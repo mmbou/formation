@@ -1,17 +1,22 @@
 <?php
 class Personnage
 {
-  private $_force = 20;        // La force du personnage
-  private $_experience = 0;   // Son expérience
-  private $_degats = 0;       // Ses dégâts
+  private $_force ;        // La force du personnage
+  private $_experience ;   // Son expérience
+  private $_degats ;       // Ses dégâts
+
+  //Déclaration de constantes
+  const FORCE_PETITE = 20;
+  const FORCE_MOYENNE = 50;
+  const FORCE_GRANDE = 80;
         
 
-  public function __construct($force, $degats) // Constructeur demandant 2 paramètres
+  public function __construct($force) // Constructeur demandant 2 paramètres
   {
     echo 'Voici le constructeur !'; // Message s'affichant une fois que tout objet est créé.
     $this->setForce($force); // Initialisation de la force.
-    $this->setDegats($degats); // Initialisation des dégâts.
-    $this->_experience = 1; // Initialisation de l'expérience à 1.
+    $this->setDegats(0); // Initialisation des dégâts.
+    $this->setExperience(1); // Initialisation de l'expérience à 1.
   }
 
 
@@ -38,19 +43,11 @@ class Personnage
  // Mutateur chargé de modifier l'attribut $_force.
   public function setForce($force)
   {
-    if (!is_int($force)) // S'il ne s'agit pas d'un nombre entier.
+      // On vérifie qu'on nous donne bien soit une « FORCE_PETITE », soit une « FORCE_MOYENNE », soit une « FORCE_GRANDE ».
+    if (in_array($force, [self::FORCE_PETITE, self::FORCE_MOYENNE, self::FORCE_GRANDE]))
     {
-      trigger_error('La force d\'un personnage doit être un nombre entier', E_USER_WARNING);
-      return;
+      $this->_force = $force;
     }
-    
-    if ($force > 100) // On vérifie bien qu'on ne souhaite pas assigner une valeur supérieure à 100.
-    {
-      trigger_error('La force d\'un personnage ne peut dépasser 100', E_USER_WARNING);
-      return;
-    }
-    
-    $this->_force = $force;
   }
 
 
@@ -104,13 +101,13 @@ class Personnage
 
 
    // Nous déclarons une méthode dont le seul but est d'afficher un texte.
-  public function parler()
+  public static function parler()
   {
     echo "<br/>";
-    echo 'Je suis un personnage !';
+    echo 'I\'m the king of this kingdom, Ah ah ah ah!! ';
   }
 
-    public function affichePersonne()
+    public function affichePersonnage()
   {
     echo "<br/>";
     echo 'Personnage [] Force: ',$this->_force,' Experience : ',$this->_experience,' Degats : ', $this->_degats;
@@ -118,8 +115,6 @@ class Personnage
 
 }
 
-$perso1 = new Personnage(60, 0); // 60 de force, 0 dégât
-$perso1->affichePersonne();
 
 
 
