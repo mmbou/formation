@@ -12,5 +12,6 @@ Personnage::parler();
 
 
 
+
 ?>
 	
