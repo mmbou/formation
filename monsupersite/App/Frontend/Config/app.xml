@@ -2,5 +2,6 @@
 <definitions>
 
 	<define var="nombre_news" value="5" />
+	<define var="nombre_caracteres" value="200" />
 </definitions>
 
