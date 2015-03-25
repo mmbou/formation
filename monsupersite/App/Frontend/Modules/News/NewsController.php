@@ -6,6 +6,42 @@ use \OCFram\HTTPRequest;
 
 class NewsController extends BackController
 {
+
+
+  public function executeInsertComment(HTTPRequest $request)
+  {
+    $this->page->addVar('title', 'Ajout d\'un commentaire');
+    
+    if ($request->postExists('pseudo'))
+    {
+      $comment = new Comment([
+        'news' => $request->getData('news'),
+        'auteur' => $request->postData('pseudo'),
+        'contenu' => $request->postData('contenu')
+      ]);
+      
+      if ($comment->isValid())
+      {
+        $this->managers->getManagerOf('Comments')->save($comment);
+        
+        $this->app->user()->setFlash('Le commentaire a bien été ajouté, merci !');
+        
+        $this->app->httpResponse()->redirect('news-'.$request->getData('news').'.html');
+      }
+      else
+      {
+        $this->page->addVar('erreurs', $comment->erreurs());
+      }
+      
+      $this->page->addVar('comment', $comment);
+    }
+  }
+
+
+
+
+
+
   public function executeIndex(HTTPRequest $request)
   {
     $nombreNews = $this->app->config()->get('nombre_news');
@@ -50,6 +86,7 @@ class NewsController extends BackController
     
     $this->page->addVar('title', $news->titre());
     $this->page->addVar('news', $news);
+    $this->page->addVar('comments', $this->managers->getManagerOf('Comments')->getListOf($news->id()));
   }
 
 
