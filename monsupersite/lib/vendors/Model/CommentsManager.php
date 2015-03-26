@@ -6,6 +6,37 @@ use \Entity\Comment;
 
 abstract class CommentsManager extends Manager
 {
+
+
+  /**
+   * Méthode permettant de supprimer un commentaire.
+   * @param $id L'identifiant du commentaire à supprimer
+   * @return void
+   */
+  abstract public function delete($id);
+
+
+
+
+/**
+   * Méthode permettant de modifier un commentaire.
+   * @param $comment Le commentaire à modifier
+   * @return void
+   */
+  abstract protected function modify(Comment $comment);
+
+
+
+  /**
+   * Méthode permettant d'obtenir un commentaire spécifique.
+   * @param $id L'identifiant du commentaire
+   * @return Comment
+   */
+  abstract public function get($id);
+
+
+
+
   /**
    * Méthode permettant d'ajouter un commentaire
    * @param $comment Le commentaire à ajouter

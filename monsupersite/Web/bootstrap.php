@@ -23,6 +23,7 @@ $entityLoader->register();
 // Il ne nous suffit plus qu'à déduire le nom de la classe et à l'instancier
 $appClass = 'App\\'.$_GET['app'].'\\'.$_GET['app'].'Application';
 
+
 $app = new $appClass;
 $app->run();
 
