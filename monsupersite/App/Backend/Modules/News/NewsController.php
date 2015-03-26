@@ -7,7 +7,7 @@ use \Entity\Comment;
 use \Entity\News;
 use \FormBuilder\CommentFormBuilder;
 use \FormBuilder\NewsFormBuilder;
-use \OCFram\FormHandler
+use \OCFram\FormHandler;
 
 class NewsController extends BackController
 {
