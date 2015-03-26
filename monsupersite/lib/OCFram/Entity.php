@@ -6,6 +6,12 @@ abstract class Entity implements \ArrayAccess
   protected $erreurs = [],
             $id;
 
+// Utilisation du trait Hydrator pour que nos entités puissent être hydratées
+  use Hydrator;
+  
+  // La méthode hydrate() n'est ainsi plus implémentée dans notre classe
+
+
   public function __construct(array $donnees = [])
   {
     if (!empty($donnees))
