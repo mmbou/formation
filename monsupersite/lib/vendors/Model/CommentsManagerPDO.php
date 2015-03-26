@@ -6,6 +6,12 @@ use \Entity\Comment;
 class CommentsManagerPDO extends CommentsManager
 {
 
+  public function deleteFromNews($news)
+  {
+    $this->dao->exec('DELETE FROM comments WHERE news = '.(int) $news);
+  }
+
+
 
  public function delete($id)
   {

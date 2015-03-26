@@ -14,7 +14,7 @@ abstract class Application
     $this->httpRequest = new HTTPRequest($this);
     $this->httpResponse = new HTTPResponse($this);
     $this->user = new User($this); //add
-    $this->config = new Config($this)//add
+    $this->config = new Config($this); //add
    
     $this->name = '';
   }

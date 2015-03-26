@@ -40,7 +40,7 @@ class SplClassLoader
   private $_fileExtension = '.php';
   private $_namespace;
   private $_includePath;
-  private $_namespaceSeparator = '\\';
+  private $_namespaceSeparator = "\\";
 
   /**
    * Creates a new <tt>SplClassLoader</tt> that loads classes of the
