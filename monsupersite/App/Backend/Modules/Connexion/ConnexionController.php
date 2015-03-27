@@ -26,6 +26,25 @@ class ConnexionController extends BackController
       }
     }
   }
+
+/**
+ * Fonction de déconnexion d'un utilisateur
+ */
+
+public function executeLogout(HTTPRequest $request)
+  {
+
+        $this->app->user()->setAuthenticated(false);
+        $this->app->httpResponse()->redirect('.');
+  
+    
+  }
+
+
+
+
+
+
 }
 
 ?>
