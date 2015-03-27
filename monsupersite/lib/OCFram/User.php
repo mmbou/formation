@@ -5,6 +5,7 @@ session_start();
 
 class User
 {
+ 
   public function getAttribute($attr)
   {
     return isset($_SESSION[$attr]) ? $_SESSION[$attr] : null;
@@ -32,6 +33,7 @@ class User
   {
     $_SESSION[$attr] = $value;
   }
+
 
   public function setAuthenticated($authenticated = true)
   {
