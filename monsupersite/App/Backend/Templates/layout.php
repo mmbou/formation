@@ -23,6 +23,8 @@
           <?php if ($user->isAuthenticated()) { ?>
           <li><a href="/admin/">Admin</a></li>
           <li><a href="/admin/news-insert.html">Ajouter une news</a></li>
+          <li><a href="/admin/user-insert.html">Ajouter un user</a></li>
+          <li><a href="/admin/user-update.html">Mettre à jour un user</a></li>
           <li><a href="/admin/logout">Déconnexion</a></li>
           <?php } ?>
         </ul>

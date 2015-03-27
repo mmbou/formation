@@ -35,14 +35,14 @@ class ConnexionController extends BackController
               if($user->type() == 0 )    
               {
                 //On le dirige vers la partie écrivain
-                $this->app->user()->setAttribute("type", 0);
-                $this->app->httpResponse()->redirect('.');
+                $this->app->user()->setAttribute($type, 0);
+                $this->app->httpResponse()->redirect('/');
               }
 
                if($user->type() == 1 )
               {
                 //On le dirige vers la partie administrateurs
-                $this->app->user()->setAttribute("type", 0);
+                $this->app->user()->setAttribute($type, 0);
                 $this->app->httpResponse()->redirect('.');
               }
 
