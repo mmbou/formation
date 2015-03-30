@@ -6,17 +6,17 @@ session_start();
 class User
 {
  
-  private $type;
+ protected $type = 22;
 
-  public function setType($type)
-  {
+ public function setType($type)
+ {
     $this->type = $type;
-  } 
+ }
 
-   public function type()
-  {
-    return $this->type;
-  } 
+ public function type()
+ {
+  return $this->type;
+ }
 
 
   public function getAttribute($attr)

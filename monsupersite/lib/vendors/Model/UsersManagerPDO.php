@@ -14,7 +14,7 @@ class UsersManagerPDO extends UsersManager
 
 
 
- public function getUnique($login, $password)
+ public function getUniqueCurrent($login, $password)
   {
     $requete = $this->dao->prepare('SELECT id, nom, prenom, login, password, dateNaissance, dateAjout, type FROM users WHERE login = :login AND password = :password');
     

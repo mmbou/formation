@@ -72,12 +72,12 @@ const TYPE_INVALIDE     = 5;
 
 
 
-  public function setDateNaissance(DateTime $dateNaissance)
+  public function setDateNaissance(\DateTime $dateNaissance)
   {
     $this->dateNaissance = $dateNaissance;
   }
 
-  public function setDateAjout(DateTime $dateAjout)
+  public function setDateAjout(\DateTime $dateAjout)
   {
     $this->dateAjout = $dateAjout;
   }

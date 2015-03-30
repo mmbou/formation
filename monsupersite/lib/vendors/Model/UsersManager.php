@@ -2,7 +2,7 @@
 namespace Model;
  
 use \OCFram\Manager;
-use \Entity\Users;
+use \Entity\User;
  
 abstract class UsersManager extends Manager
 {
@@ -18,7 +18,7 @@ abstract class UsersManager extends Manager
    * @param $login et $password de l'utilisateur 
    * @return User demandé
    */
-  abstract public function getUnique($login, $password);
+  abstract public function getUniqueCurrent($login, $password);
  
   
 }

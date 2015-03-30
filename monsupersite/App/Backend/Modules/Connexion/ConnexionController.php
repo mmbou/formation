@@ -23,7 +23,7 @@ class ConnexionController extends BackController
       
 
     // On récupère le manager des users.
-    $user = $this->managers->getManagerOf('Users')->getUnique($login, $password);
+    $user = $this->managers->getManagerOf('Users')->getUniqueCurrent($login, $password);
 
     // On regarde si l'utilisateur était trouvé
     if(isset($user))
@@ -31,20 +31,18 @@ class ConnexionController extends BackController
 
               $this->app->user()->setAuthenticated(true);
 
-
               if($user->type() == '1' )    
               {
                 //On le dirige vers la partie admin
-                $this->app->user()->setType(1);
+
                 $this->app->httpResponse()->redirect('/admin/');
               }
 
                if($user->type() == '0' )
               {
                 //On le dirige vers la partie écrivains
-                $type = 0;
-                $this->app->user()->setType($type);
-                $this->app->httpResponse()->redirect('/');
+              
+                $this->app->httpResponse()->redirect('/admin/');
               }
 
               
@@ -65,10 +63,8 @@ class ConnexionController extends BackController
 
 public function executeLogout(HTTPRequest $request)
   {
-
+        $this->app->user()->setType(null);
         $this->app->user()->setAuthenticated(false);
-        $type = null;
-        $this->app->user()->setType($type);
         $this->app->httpResponse()->redirect('.');
   
     
