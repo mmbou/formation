@@ -32,18 +32,19 @@ class ConnexionController extends BackController
               $this->app->user()->setAuthenticated(true);
 
 
-              if($user->type() == 0 )    
+              if($user->type() == '1' )    
               {
-                //On le dirige vers la partie écrivain
-                $this->app->user()->setAttribute($type, 0);
-                $this->app->httpResponse()->redirect('/');
+                //On le dirige vers la partie admin
+                $this->app->user()->setType(1);
+                $this->app->httpResponse()->redirect('/admin/');
               }
 
-               if($user->type() == 1 )
+               if($user->type() == '0' )
               {
-                //On le dirige vers la partie administrateurs
-                $this->app->user()->setAttribute($type, 0);
-                $this->app->httpResponse()->redirect('.');
+                //On le dirige vers la partie écrivains
+                $type = 0;
+                $this->app->user()->setType($type);
+                $this->app->httpResponse()->redirect('/');
               }
 
               
@@ -66,6 +67,8 @@ public function executeLogout(HTTPRequest $request)
   {
 
         $this->app->user()->setAuthenticated(false);
+        $type = null;
+        $this->app->user()->setType($type);
         $this->app->httpResponse()->redirect('.');
   
     

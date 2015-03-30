@@ -6,6 +6,19 @@ session_start();
 class User
 {
  
+  private $type;
+
+  public function setType($type)
+  {
+    $this->type = $type;
+  } 
+
+   public function type()
+  {
+    return $this->type;
+  } 
+
+
   public function getAttribute($attr)
   {
     return isset($_SESSION[$attr]) ? $_SESSION[$attr] : null;

@@ -25,7 +25,7 @@
            <li><a href="/admin/">Connexion</a></li>
           <?php } ?>
 
-         <?php if ($user->isAuthenticated()) { ?>
+         <?php if ($user->isAuthenticated() AND $user->TYPE() == 0) { ?>
           <li><a href="/admin/news-insert.html">Ajouter une news</a></li>
           <li><a href="/admin/logout">Déconnexion</a></li>
 

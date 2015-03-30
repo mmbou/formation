@@ -19,14 +19,24 @@
       
       <nav>
         <ul>
+
           <li><a href="/">Accueil</a></li>
-          <?php if ($user->isAuthenticated()) { ?>
+          <?php if ($user->isAuthenticated() AND  $user->type() == 1) { ?>
           <li><a href="/admin/">Admin</a></li>
           <li><a href="/admin/news-insert.html">Ajouter une news</a></li>
           <li><a href="/admin/user-insert.html">Ajouter un user</a></li>
           <li><a href="/admin/user-update.html">Mettre à jour un user</a></li>
           <li><a href="/admin/logout">Déconnexion</a></li>
           <?php } ?>
+
+          <?php if ($user->isAuthenticated()  AND $user->type() == 0) { ?>
+          <li><a href="/admin/news-insert.html">Ajouter une news</a></li>
+          <li><a href="/admin/logout">Déconnexion</a></li>
+          <?php } ?>
+
+
+   
+
         </ul>
       </nav>
       
