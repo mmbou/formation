@@ -7,6 +7,7 @@ use \Entity\News;
 use \Entity\Comment;
 use \FormBuilder\CommentFormBuilder;
 use \FormBuilder\NewsFormBuilder;
+use \FormBuilder\UserFormBuilder;
 use \OCFram\FormHandler;
  
 class NewsController extends BackController
@@ -47,6 +48,13 @@ class NewsController extends BackController
     $this->processForm($request);
  
     $this->page->addVar('title', 'Ajout d\'une news');
+  }
+
+   public function executeInsertUser(HTTPRequest $request)
+  {
+    $this->processForm2($request);
+ 
+    $this->page->addVar('title', 'Ajout d\'un utilisateur');
   }
  
   public function executeUpdate(HTTPRequest $request)
@@ -134,6 +142,59 @@ class NewsController extends BackController
  
     $this->page->addVar('form', $form->createView());
   }
+
+  public function processForm2(HTTPRequest $request)
+  {
+    if ($request->method() == 'POST')
+    {
+      $user = new User([
+        'nom' => $request->postData('nom'),
+        'prenom' => $request->postData('prenom'),
+        'login' => $request->postData('login'), 
+        'password' => $request->postData('password'),
+        'dateNaissance' => $request->postData('dateNaissance'),
+        'dateAjout' => $request->postData('dateAjout'), 
+        'type' => $request->postData('type'),
+
+
+      ]);
+ 
+      if ($request->getExists('id'))
+      {
+        $user->setId($request->getData('id'));
+      }
+    }
+    else
+    {
+      // L'identifiant de la news est transmis si on veut la modifier
+      if ($request->getExists('id'))
+      {
+        $user = $this->managers->getManagerOf('Users')->getUnique($request->getData('id'));
+      }
+      else
+      {
+        $user = new User;
+      }
+    }
+ 
+    $formBuilder = new UserFormBuilder($user);
+    $formBuilder->build();
+ 
+    $form = $formBuilder->form();
+ 
+    $formHandler = new FormHandler($form, $this->managers->getManagerOf('Users'), $request);
+ 
+    if ($formHandler->process())
+    {
+      $this->app->user()->setFlash($news->isNew() ? 'La news a bien été ajoutée !' : 'La news a bien été modifiée !');
+ 
+      $this->app->httpResponse()->redirect('/admin/');
+    }
+ 
+    $this->page->addVar('form', $form->createView());
+  }
+
+
 }
 
 
