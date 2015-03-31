@@ -22,20 +22,21 @@
           <li><a href="/">Accueil</a></li>
                   
            <?php if ($user->isAuthenticated() == false) { ?>
-           <li><a href="/admin/">Connexion</a></li>
-          <?php } ?>
-
-          <?php if ($user->isAuthenticated() AND $user->getAttribute('type') == 0) { ?>
-          <li><a href="/admin/news-insert.html">Ajouter une news</a></li>
-          <li><a href="/admin/logout">Déconnexion</a></li>
+           <li><a href="/admin/">Connection</a></li>
           <?php } ?>
 
           <?php if ($user->isAuthenticated() AND $user->getAttribute('type') == 1) { ?> 
           <li><a href="/admin/">Admin</a></li>
-          <li><a href="/admin/news-insert.html">Ajouter une news</a></li>
-          <li><a href="/admin/user-insert.html">Ajouter un utilisateur</a></li>
-          <li><a href="/admin/user-update.html">Mettre à jour un utilisateur</a></li>
-          <li><a href="/admin/logout">Déconnexion</a></li>
+          <li><a href="/admin/news-insert.html">Add news</a></li>
+          <li><a href="/admin/user-insert.html">Add user</a></li>
+          <li><a href="/admin/user-index.html">See users</a></li>
+          <li><a href="/admin/logout">Logout</a></li>
+          <?php } ?>
+
+
+           <?php if ($user->isAuthenticated() AND $user->getAttribute('type') == 0) { ?>
+          <li><a href="/admin/news-insert.html">Add news</a></li>
+          <li><a href="/admin/logout">Logout</a></li>
           <?php } ?>
          
         </ul>

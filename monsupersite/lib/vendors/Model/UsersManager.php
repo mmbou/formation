@@ -40,6 +40,23 @@ abstract class UsersManager extends Manager
    */
   abstract public function count();
 
+   /**
+   * Méthode retournant une liste de news demandée.
+   * @param $debut int La première news à sélectionner
+   * @param $limite int Le nombre de news à sélectionner
+   * @return array La liste des news. Chaque entrée est une instance de News.
+   */
+  abstract public function getList($debut = -1, $limite = -1);
+
+    /**
+   * Méthode permettant de supprimer une news.
+   * @param $id int L'identifiant de la news à supprimer
+   * @return void
+   */
+  abstract public function deleteUser($id);
+ 
+ 
+
   /**
    * Méthode retournant l'utilisateur qui veut se connecter
    * @param $login et $password de l'utilisateur 

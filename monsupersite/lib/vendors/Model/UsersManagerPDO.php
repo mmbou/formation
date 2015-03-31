@@ -52,7 +52,7 @@ class UsersManagerPDO extends UsersManager
 
     protected function modify(User $user)
   {
-    $requete = $this->dao->prepare('UPDATE users SET nom = :nom, prenom = :prenom, login = :login, password = :password, dateAjout = :dateAjout, type = :type WHERE id = :id');
+    $requete = $this->dao->prepare('UPDATE users SET nom = :nom, prenom = :prenom, login = :login, password = :password, type = :type WHERE id = :id');
     
     $requete->bindValue(':nom', $user->nom());
     $requete->bindValue(':prenom', $user->prenom());
@@ -63,6 +63,13 @@ class UsersManagerPDO extends UsersManager
     
     $requete->execute();
   }
+
+      public function deleteUser($id)
+  {
+    $this->dao->exec('DELETE FROM users WHERE id = '.(int) $id);
+  }
+
+
 
 
  public function getUnique($id)
@@ -81,6 +88,31 @@ class UsersManagerPDO extends UsersManager
     }
     
     return null;
+  }
+
+
+  public function getList($debut = -1, $limite = -1)
+  {
+    $sql = 'SELECT id, nom, prenom, dateAjout, type FROM users ORDER BY id DESC';
+    
+    if ($debut != -1 || $limite != -1)
+    {
+      $sql .= ' LIMIT '.(int) $limite.' OFFSET '.(int) $debut;
+    }
+    
+    $requete = $this->dao->query($sql);
+    $requete->setFetchMode(\PDO::FETCH_CLASS | \PDO::FETCH_PROPS_LATE, '\Entity\User');
+    
+    $listeUsers = $requete->fetchAll();
+    
+    foreach ($listeUsers as $users)
+    {
+      $users->setDateAjout(new \DateTime($users->dateAjout()));
+    }
+    
+    $requete->closeCursor();
+    
+    return $listeUsers;
   }
 
 

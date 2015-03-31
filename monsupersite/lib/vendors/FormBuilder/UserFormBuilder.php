@@ -50,9 +50,9 @@ class UserFormBuilder extends FormBuilder
        ->add(new StringField([
         'label' => 'Type (1: Admin, 0:Writer)',
         'name' => 'type',
-        'maxLength' => 10,
+        'maxLength' => 100,
         'validators' => [
-          new MaxLengthValidator('Le type spécifié est trop long (100 caractères maximum)', 10),
+          new MaxLengthValidator('Le type spécifié est trop long (100 caractères maximum)', 100),
           new NotNullValidator('Merci de spécifier le type'),
         ],
        ]));

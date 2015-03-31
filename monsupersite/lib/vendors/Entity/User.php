@@ -22,7 +22,7 @@ const TYPE_INVALIDE     = 5;
 
   public function isValid()
   {
-    return !(empty($this->nom) || empty($this->prenom) || empty($this->login) || empty($this->password) || empty($this->type));
+    return !(empty($this->nom) || empty($this->prenom) || empty($this->login) || empty($this->password));
   }
 
 

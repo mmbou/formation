@@ -24,6 +24,16 @@ class NewsController extends BackController
  
     $this->app->httpResponse()->redirect('.');
   }
+
+   public function executeDeleteUser(HTTPRequest $request)
+  {
+ 
+    $this->managers->getManagerOf('Users')->deleteUser($request->getData('id'));
+ 
+    $this->app->user()->setFlash('Le user a bien été supprimé !');
+ 
+    $this->app->httpResponse()->redirect('.');
+  }
  
   public function executeDeleteComment(HTTPRequest $request)
   {
@@ -42,6 +52,18 @@ class NewsController extends BackController
  
     $this->page->addVar('listeNews', $manager->getList());
     $this->page->addVar('nombreNews', $manager->count());
+  }
+
+    public function executeIndexUser(HTTPRequest $request)
+  {
+    $this->page->addVar('title', 'Gestion des users');
+ 
+    $manager = $this->managers->getManagerOf('Users');
+
+    $this->page->addVar('nombreUsers', $manager->count());
+    $this->page->addVar('listeUsers', $manager->getList());
+
+   
   }
  
   public function executeInsert(HTTPRequest $request)
@@ -64,6 +86,14 @@ class NewsController extends BackController
  
     $this->page->addVar('title', 'Modification d\'une news');
   }
+
+    public function executeUpdateUser(HTTPRequest $request)
+  {
+    $this->processForm2($request);
+ 
+    $this->page->addVar('title', 'Modification d\'un user');
+  }
+ 
  
   public function executeUpdateComment(HTTPRequest $request)
   {
@@ -152,7 +182,7 @@ class NewsController extends BackController
         'nom' => $request->postData('nom'),
         'prenom' => $request->postData('prenom'),
         'login' => $request->postData('login'), 
-        'password' => $request->postData('password'), 
+        'password' => $request->postData('password'),  
         'type' => $request->postData('type'),
 
 
