@@ -6,7 +6,7 @@ session_start();
 class User
 {
  
- protected $type = 22;
+ private $type = 22;
 
  public function setType($type)
  {
@@ -37,7 +37,7 @@ class User
     return isset($_SESSION['flash']);
   }
 
-  public function isAuthenticated()
+   public function isAuthenticated()
   {
     return isset($_SESSION['auth']) && $_SESSION['auth'] === true;
   }

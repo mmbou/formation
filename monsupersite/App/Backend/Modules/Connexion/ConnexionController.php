@@ -31,17 +31,17 @@ class ConnexionController extends BackController
 
               $this->app->user()->setAuthenticated(true);
 
-              if($user->type() == '1' )    
+              if($user->type() == 1 )    
               {
                 //On le dirige vers la partie admin
-
+                $this->app->user()->setType(1); 
                 $this->app->httpResponse()->redirect('/admin/');
               }
 
-               if($user->type() == '0' )
+               if($user->type() == 0 )
               {
                 //On le dirige vers la partie écrivains
-              
+                 $this->app->user()->setType(0); 
                 $this->app->httpResponse()->redirect('/admin/');
               }
 
