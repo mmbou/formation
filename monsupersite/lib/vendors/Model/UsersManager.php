@@ -6,7 +6,34 @@ use \Entity\User;
  
 abstract class UsersManager extends Manager
 {
-  
+
+
+  /**
+   * Méthode permettant d'enregistrer une news.
+   * @param $news News la news à enregistrer
+   * @see self::add()
+   * @see self::modify()
+   * @return void
+   */
+  public function save(User $user)
+  {
+    if ($user->isValid())
+    {
+      $user->isNew() ? $this->add($user) : $this->modify($user);
+    }
+    else
+    {
+      throw new \RuntimeException('Le user doit être valide pour être enregistré');
+    }
+  }
+
+    /**
+   * Méthode permettant d'ajouter une news.
+   * @param $news News La news à ajouter
+   * @return void
+   */
+  abstract protected function add(User $user);
+
   /**
    * Méthode renvoyant le nombre d'utilisateur total
    * @return int
@@ -19,6 +46,13 @@ abstract class UsersManager extends Manager
    * @return User demandé
    */
   abstract public function getUniqueCurrent($login, $password);
+
+    /**
+   * Méthode retournant une news précise.
+   * @param $id int L'identifiant de la news à récupérer
+   * @return News La news demandée
+   */
+  abstract public function getUnique($id);
  
   
 }

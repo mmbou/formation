@@ -9,7 +9,6 @@ class User extends Entity
             $prenom,
             $login,
             $password,
-            $dateNaissance,
             $dateAjout,
             $type;
 
@@ -23,7 +22,7 @@ const TYPE_INVALIDE     = 5;
 
   public function isValid()
   {
-    return !(empty($this->nom) || empty($this->prenom) || empty($this->login) || empty($this->password) || empty($this->dateNaissance)|| empty($this->dateAjout) || empty($this->type));
+    return !(empty($this->nom) || empty($this->prenom) || empty($this->login) || empty($this->password) || empty($this->type));
   }
 
 
@@ -71,12 +70,6 @@ const TYPE_INVALIDE     = 5;
   }
 
 
-
-  public function setDateNaissance(\DateTime $dateNaissance)
-  {
-    $this->dateNaissance = $dateNaissance;
-  }
-
   public function setDateAjout(\DateTime $dateAjout)
   {
     $this->dateAjout = $dateAjout;
@@ -112,11 +105,6 @@ const TYPE_INVALIDE     = 5;
   public function password()
   {
     return $this->password;
-  }
-
-  public function dateNaissance()
-  {
-    return $this->dateNaissance;
   }
 
   public function dateAjout()

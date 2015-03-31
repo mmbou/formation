@@ -16,8 +16,8 @@ class UserFormBuilder extends FormBuilder
         'name' => 'nom',
         'maxLength' => 20,
         'validators' => [
-          new MaxLengthValidator('L\'auteur spécifié est trop long (20 caractères maximum)', 20),
-          new NotNullValidator('Merci de spécifier l\'auteur de la news'),
+          new MaxLengthValidator('Le nom spécifié est trop long (20 caractères maximum)', 20),
+          new NotNullValidator('Merci de spécifier le nom'),
         ],
        ]))
        ->add(new StringField([
@@ -25,8 +25,8 @@ class UserFormBuilder extends FormBuilder
         'name' => 'prenom',
         'maxLength' => 100,
         'validators' => [
-          new MaxLengthValidator('Le titre spécifié est trop long (100 caractères maximum)', 100),
-          new NotNullValidator('Merci de spécifier le titre de la news'),
+          new MaxLengthValidator('Le prenom spécifié est trop long (100 caractères maximum)', 100),
+          new NotNullValidator('Merci de spécifier le prenom'),
         ],
        ]))
        ->add(new StringField([
@@ -34,8 +34,8 @@ class UserFormBuilder extends FormBuilder
         'name' => 'login',
         'maxLength' => 100,
         'validators' => [
-          new MaxLengthValidator('Le titre spécifié est trop long (100 caractères maximum)', 100),
-          new NotNullValidator('Merci de spécifier le titre de la news'),
+          new MaxLengthValidator('Le login spécifié est trop long (100 caractères maximum)', 100),
+          new NotNullValidator('Merci de spécifier le login'),
         ],
        ]))
        ->add(new StringField([
@@ -43,26 +43,17 @@ class UserFormBuilder extends FormBuilder
         'name' => 'password',
         'maxLength' => 100,
         'validators' => [
-          new MaxLengthValidator('Le titre spécifié est trop long (100 caractères maximum)', 100),
-          new NotNullValidator('Merci de spécifier le titre de la news'),
+          new MaxLengthValidator('Le mot de pass spécifié est trop long (100 caractères maximum)', 100),
+          new NotNullValidator('Merci de spécifier le mot de pass'),
         ],
        ]))
        ->add(new StringField([
-        'label' => 'Date de Naissance',
-        'name' => 'dateNaissance',
-        'maxLength' => 100,
-        'validators' => [
-          new MaxLengthValidator('Le titre spécifié est trop long (100 caractères maximum)', 100),
-          new NotNullValidator('Merci de spécifier le titre de la news'),
-        ],
-       ]))
-       ->add(new StringField([
-        'label' => 'Type',
+        'label' => 'Type (1: Admin, 0:Writer)',
         'name' => 'type',
-        'maxLength' => 100,
+        'maxLength' => 10,
         'validators' => [
-          new MaxLengthValidator('Le titre spécifié est trop long (100 caractères maximum)', 100),
-          new NotNullValidator('Merci de spécifier le titre de la news'),
+          new MaxLengthValidator('Le type spécifié est trop long (100 caractères maximum)', 10),
+          new NotNullValidator('Merci de spécifier le type'),
         ],
        ]));
   }

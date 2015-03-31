@@ -5,6 +5,7 @@ use \OCFram\BackController;
 use \OCFram\HTTPRequest;
 use \Entity\News;
 use \Entity\Comment;
+use \Entity\User;
 use \FormBuilder\CommentFormBuilder;
 use \FormBuilder\NewsFormBuilder;
 use \FormBuilder\UserFormBuilder;
@@ -151,9 +152,7 @@ class NewsController extends BackController
         'nom' => $request->postData('nom'),
         'prenom' => $request->postData('prenom'),
         'login' => $request->postData('login'), 
-        'password' => $request->postData('password'),
-        'dateNaissance' => $request->postData('dateNaissance'),
-        'dateAjout' => $request->postData('dateAjout'), 
+        'password' => $request->postData('password'), 
         'type' => $request->postData('type'),
 
 
@@ -186,7 +185,7 @@ class NewsController extends BackController
  
     if ($formHandler->process())
     {
-      $this->app->user()->setFlash($news->isNew() ? 'La news a bien été ajoutée !' : 'La news a bien été modifiée !');
+      $this->app->user()->setFlash($user->isNew() ? 'Le user a bien été ajoutée !' : 'Le user a bien été modifié !');
  
       $this->app->httpResponse()->redirect('/admin/');
     }
