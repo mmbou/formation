@@ -3,6 +3,7 @@ namespace Model;
  
 use \OCFram\Manager;
 use \Entity\News;
+use \Entity\User;
  
 abstract class NewsManager extends Manager
 {
