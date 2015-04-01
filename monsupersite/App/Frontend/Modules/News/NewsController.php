@@ -24,7 +24,8 @@ class NewsController extends BackController
         'news' => $request->getData('news'),
         'auteur' => $request->postData('auteur'),
         'contenu' => $request->postData('contenu'),
-        'email' => $request->postData('email')
+        'email' => $request->postData('email'), 
+        'checkbox' => $request->postData('checkbox') 
       ]);
     }
     else

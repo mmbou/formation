@@ -22,11 +22,12 @@ class CommentsManagerPDO extends CommentsManager
 
   protected function modify(Comment $comment)
   {
-    $q = $this->dao->prepare('UPDATE comments SET auteur = :auteur, contenu = :contenu , email = :email WHERE id = :id');
+    $q = $this->dao->prepare('UPDATE comments SET auteur = :auteur, contenu = :contenu , email = :email, checkbox = :checkbox WHERE id = :id');
     
     $q->bindValue(':auteur', $comment->auteur());
     $q->bindValue(':contenu', $comment->contenu());
-    $q->bindValue(':contenu', $comment->contenu());
+    $q->bindValue(':email', $comment->email());
+    $q->bindValue(':checkbox', $comment->checkbox());
     $q->bindValue(':id', $comment->id(), \PDO::PARAM_INT);
     
     $q->execute();
@@ -75,12 +76,13 @@ class CommentsManagerPDO extends CommentsManager
 
   protected function add(Comment $comment)
   {
-    $q = $this->dao->prepare('INSERT INTO comments SET news = :news, auteur = :auteur, contenu = :contenu, date = NOW(), email = :email');
+    $q = $this->dao->prepare('INSERT INTO comments SET news = :news, auteur = :auteur, contenu = :contenu, date = NOW(), email = :email, checkbox = :checkbox');
     
     $q->bindValue(':news', $comment->news(), \PDO::PARAM_INT);
     $q->bindValue(':auteur', $comment->auteur());
     $q->bindValue(':contenu', $comment->contenu());
     $q->bindValue(':email', $comment->email());
+    $q->bindValue(':checkbox', $comment->checkbox());
     
     $q->execute();
     

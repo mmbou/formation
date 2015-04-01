@@ -9,7 +9,8 @@ class Comment extends Entity
             $auteur,
             $contenu,
             $date,
-            $email;
+            $email,
+            $checkbox;
 
   const AUTEUR_INVALIDE = 1;
   const CONTENU_INVALIDE = 2;
@@ -61,6 +62,19 @@ class Comment extends Entity
     $this->email = $email;
   }
 
+     public function setCheckbox($checkbox)
+  {
+    if(isset($checkbox))
+    {
+    $this->checkbox = 'OK';
+    }
+     if(!isset($checkbox))
+    {
+    $this->checkbox = 'NO';
+    }
+
+  }
+
   public function news()
   {
     return $this->news;
@@ -85,6 +99,12 @@ class Comment extends Entity
   {
     return $this->email;
   }
+
+   public function checkbox()
+  {
+    return $this->checkbox;
+  }
+
 
 }
 
