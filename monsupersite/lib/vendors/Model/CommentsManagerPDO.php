@@ -115,6 +115,29 @@ public function getListOf($news)
     }
     
     return $comments;
+  } 
+
+  public function sendingMails($news)
+  {
+    if (!ctype_digit($news))
+    {
+      throw new \InvalidArgumentException('L\'identifiant de la news passé doit être un nombre entier valide');
+    }
+    
+    $q = $this->dao->prepare('SELECT id, auteur, contenu, date, email FROM comments WHERE news = :news AND checkbox = 1');
+    $q->bindValue(':news', $news, \PDO::PARAM_INT);
+    $q->execute();
+    
+    $q->setFetchMode(\PDO::FETCH_CLASS | \PDO::FETCH_PROPS_LATE, '\Entity\Comment');
+    
+    $comments = $q->fetchAll();
+    
+    foreach ($comments as $comment)
+    {
+      $comment->setDate(new \DateTime($comment->date()));
+    }
+    
+    return $comments;
   }
 
 

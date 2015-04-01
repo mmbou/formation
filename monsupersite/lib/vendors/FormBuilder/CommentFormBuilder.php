@@ -42,11 +42,6 @@ class CommentFormBuilder extends FormBuilder
        ->add(new CheckboxField([
         'label' => 'etre averti par mail des nouveaux commentaires',
         'name' => 'checkbox',
-       /* 'maxLength' => 50,
-        'validators' => [
-          new MaxLengthValidator('L\'email spécifié est trop long (50 caractères maximum)', 50),
-          new NotNullValidator('Merci de spécifier l\'email du commentaire'),
-        ],*/
        ]))
        ;
   }

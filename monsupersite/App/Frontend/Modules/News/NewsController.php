@@ -40,21 +40,21 @@ class NewsController extends BackController
 
     $formHandler = new FormHandler($form, $this->managers->getManagerOf('Comments'), $request);
 
+    
+
     if ($formHandler->process())
     {
+
       $this->app->user()->setFlash('Le commentaire a bien été ajouté, merci !');
       $this->app->httpResponse()->redirect('news-'.$request->getData('news').'.html');
+    
+
     }
 
     $this->page->addVar('comment', $comment);
     $this->page->addVar('form', $form->createView());
     $this->page->addVar('title', 'Ajout d\'un commentaire');
   }
-
-
-
-
-
 
 
   public function executeIndex(HTTPRequest $request)
@@ -125,6 +125,17 @@ class NewsController extends BackController
      $manager = $this->managers->getManagerOf('Comments');
 
      $this->page->addVar('comments', $manager->getCommentByEmail($request->getData('email')));
+
+
+  }
+
+    public function executeSendMails(HTTPRequest $request)
+  {
+    
+
+    ;
+     $this->page->addVar('title', 'Mailing');
+     $this->page->addVar('comments',  $this->managers->getManagerOf('Comments')->sendingMails($request->getData('news')));
 
 
   }

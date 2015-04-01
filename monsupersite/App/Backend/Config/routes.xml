@@ -12,6 +12,7 @@
 	<route url="/admin/user-update-([0-9]+)\.html" module="News" action="updateUser" vars="id" />
 	<route url="/admin/user-delete-([0-9]+)\.html" module="News" action="deleteUser" vars="id" />
 	
+	
 
 
 </routes>

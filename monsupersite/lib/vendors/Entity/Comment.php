@@ -66,11 +66,11 @@ class Comment extends Entity
   {
     if(isset($checkbox))
     {
-    $this->checkbox = 'OK';
+    $this->checkbox = 1;
     }
      if(!isset($checkbox))
     {
-    $this->checkbox = 'NO';
+    $this->checkbox = 0;
     }
 
   }
