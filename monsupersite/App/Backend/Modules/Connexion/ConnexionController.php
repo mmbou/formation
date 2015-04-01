@@ -36,6 +36,8 @@ class ConnexionController extends BackController
                 //On le dirige vers la partie admin
                 $this->app->user()->setAttribute('id',$user->id()); 
                 $this->app->user()->setAttribute('type',$user->type()); 
+                $this->app->user()->setAttribute('nom',$user->nom()); 
+                $this->app->user()->setAttribute('prenom',$user->prenom());
                 $this->app->httpResponse()->redirect('/admin/');
               }
 
@@ -43,8 +45,10 @@ class ConnexionController extends BackController
               {
                 //On le dirige vers la partie écrivains
                 $this->app->user()->setAttribute('id',$user->id()); 
-                $this->app->user()->setAttribute('type',$user->type());
-                $this->app->httpResponse()->redirect('/admin/');
+                $this->app->user()->setAttribute('type',$user->type()); 
+                $this->app->user()->setAttribute('nom',$user->nom()); 
+                $this->app->user()->setAttribute('prenom',$user->prenom());
+                $this->app->httpResponse()->redirect('/');
               }
 
               
@@ -66,7 +70,9 @@ class ConnexionController extends BackController
 public function executeLogout(HTTPRequest $request)
   {
         $this->app->user()->setAttribute('id',null); 
-        $this->app->user()->setAttribute('type',null);
+        $this->app->user()->setAttribute('type',null); 
+        $this->app->user()->setAttribute('nom',null); 
+        $this->app->user()->setAttribute('prenom',null);
         $this->app->user()->setAuthenticated(false);
         $this->app->httpResponse()->redirect('.');
   

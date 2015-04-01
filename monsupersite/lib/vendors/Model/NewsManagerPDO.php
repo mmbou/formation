@@ -13,6 +13,16 @@ class NewsManagerPDO extends NewsManager
   }
 
 
+  
+   public function countNews($id)   
+  {
+    $sql = 'SELECT COUNT(*) FROM news WHERE id = '.(int) $id;
+    return $this->dao->query($sql)->fetchColumn();
+
+  }
+
+
+
  protected function add(News $news)
   {
     $requete = $this->dao->prepare('INSERT INTO news SET auteur = :auteur, titre = :titre, contenu = :contenu, dateAjout = NOW(), dateModif = NOW()');
@@ -72,6 +82,31 @@ class NewsManagerPDO extends NewsManager
     return $listeNews;
   }
 
+
+  public function getListNews($id,$debut = -1, $limite = -1)
+  {
+       $sql = 'SELECT id, auteur, titre, contenu, dateAjout, dateModif FROM news WHERE id = '.(int) $id;
+    
+    if ($debut != -1 || $limite != -1)
+    {
+      $sql .= ' LIMIT '.(int) $limite.' OFFSET '.(int) $debut;
+    }
+    
+    $requete = $this->dao->query($sql);
+    $requete->setFetchMode(\PDO::FETCH_CLASS | \PDO::FETCH_PROPS_LATE, '\Entity\News');
+    
+    $listeNews = $requete->fetchAll();
+    
+    foreach ($listeNews as $news)
+    {
+      $news->setDateAjout(new \DateTime($news->dateAjout()));
+      $news->setDateModif(new \DateTime($news->dateModif()));
+    }
+    
+    $requete->closeCursor();
+    
+    return $listeNews;
+  }
 
 
  public function getUnique($id)

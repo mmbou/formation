@@ -14,6 +14,7 @@ class UsersManagerPDO extends UsersManager
 
 
 
+
  public function getUniqueCurrent($login, $password)
   {
     $requete = $this->dao->prepare('SELECT id, nom, prenom, login, password, dateAjout, type FROM users WHERE login = :login AND password = :password');
@@ -114,6 +115,8 @@ class UsersManagerPDO extends UsersManager
     
     return $listeUsers;
   }
+
+
 
 
 

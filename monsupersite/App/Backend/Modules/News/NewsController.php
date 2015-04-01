@@ -54,6 +54,8 @@ class NewsController extends BackController
     $this->page->addVar('nombreNews', $manager->count());
   }
 
+
+
     public function executeIndexUser(HTTPRequest $request)
   {
     $this->page->addVar('title', 'Gestion des users');
@@ -221,6 +223,16 @@ class NewsController extends BackController
     }
  
     $this->page->addVar('form', $form->createView());
+  }
+
+
+  public function executeGetNewsCommentedByEmail(HTTPRequest $request)
+  {
+    $manager = $this->managers->getManagerOf('Comment');
+    
+    $this->processForm($request);
+ 
+    $this->page->addVar('title', 'Modification d\'une news');
   }
 
 

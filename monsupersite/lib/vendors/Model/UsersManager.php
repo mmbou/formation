@@ -48,6 +48,8 @@ abstract class UsersManager extends Manager
    */
   abstract public function getList($debut = -1, $limite = -1);
 
+
+
     /**
    * Méthode permettant de supprimer une news.
    * @param $id int L'identifiant de la news à supprimer

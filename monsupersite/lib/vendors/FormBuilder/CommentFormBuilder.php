@@ -28,7 +28,17 @@ class CommentFormBuilder extends FormBuilder
         'validators' => [
           new NotNullValidator('Merci de spécifier votre commentaire'),
         ],
-       ]));
+       ]))
+       ->add(new StringField([
+        'label' => 'Email',
+        'name' => 'email',
+        'maxLength' => 50,
+        'validators' => [
+          new MaxLengthValidator('L\'auteur spécifié est trop long (50 caractères maximum)', 50),
+          new NotNullValidator('Merci de spécifier l\'auteur du commentaire'),
+        ],
+       ]))
+       ;
   }
 }
 

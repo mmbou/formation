@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Client :  localhost
--- Généré le :  Ven 27 Mars 2015 à 18:22
+-- Généré le :  Mar 31 Mars 2015 à 18:57
 -- Version du serveur :  5.6.20-log
 -- Version de PHP :  5.4.31
 
@@ -32,14 +32,14 @@ CREATE TABLE IF NOT EXISTS `comments` (
   `auteur` varchar(50) NOT NULL,
   `contenu` text NOT NULL,
   `date` datetime NOT NULL
-) ENGINE=MyISAM  DEFAULT CHARSET=utf8 AUTO_INCREMENT=9 ;
+) ENGINE=MyISAM  DEFAULT CHARSET=latin1 AUTO_INCREMENT=3 ;
 
 --
 -- Contenu de la table `comments`
 --
 
 INSERT INTO `comments` (`id`, `news`, `auteur`, `contenu`, `date`) VALUES
-(8, 5, 'fd', 'gfvb', 0x323031352d30332d32372031323a33383a3436);
+(1, 2, 'writer', 'the comment', 0x323031352d30332d33312031343a30373a3434);
 
 -- --------------------------------------------------------
 
@@ -48,20 +48,23 @@ INSERT INTO `comments` (`id`, `news`, `auteur`, `contenu`, `date`) VALUES
 --
 
 CREATE TABLE IF NOT EXISTS `news` (
-`id` smallint(5) unsigned NOT NULL,
-  `auteur` varchar(30) NOT NULL,
+`id` smallint(5) NOT NULL,
+  `auteur` int(11) NOT NULL,
   `titre` varchar(100) NOT NULL,
   `contenu` text NOT NULL,
   `dateAjout` datetime NOT NULL,
   `dateModif` datetime NOT NULL
-) ENGINE=MyISAM  DEFAULT CHARSET=utf8 AUTO_INCREMENT=6 ;
+) ENGINE=MyISAM  DEFAULT CHARSET=latin1 AUTO_INCREMENT=7 ;
 
 --
 -- Contenu de la table `news`
 --
 
 INSERT INTO `news` (`id`, `auteur`, `titre`, `contenu`, `dateAjout`, `dateModif`) VALUES
-(5, 'fzf', 'fsdf', 'fdsi', 0x323031352d30332d32372031323a33383a3134, 0x323031352d30332d32372031323a33383a3230);
+(2, 0, 'News2', 'ghjgfhjgf', 0x323031352d30332d33312031333a30363a3539, 0x323031352d30332d33312031333a30363a3539),
+(3, 0, 'hgf', 'hhgfh', 0x323031352d30332d33312031363a31313a3530, 0x323031352d30332d33312031363a31313a3530),
+(4, 6, 'hgf', 'hgfhgfjhgj', 0x323031352d30332d33312031363a32343a3530, 0x323031352d30332d33312031363a32353a3437),
+(6, 2, 'hgfh', 'kjhkhjhgj', 0x323031352d30332d33312031363a32373a3033, 0x323031352d30332d33312031363a32373a3039);
 
 -- --------------------------------------------------------
 
@@ -70,23 +73,24 @@ INSERT INTO `news` (`id`, `auteur`, `titre`, `contenu`, `dateAjout`, `dateModif`
 --
 
 CREATE TABLE IF NOT EXISTS `users` (
-  `id` int(11) NOT NULL,
+`id` int(11) NOT NULL,
   `nom` varchar(40) NOT NULL,
   `prenom` varchar(40) NOT NULL,
   `login` varchar(20) NOT NULL,
   `password` varchar(20) NOT NULL,
-  `dateNaissance` datetime NOT NULL,
   `dateAjout` datetime NOT NULL,
   `type` int(11) NOT NULL
-) ENGINE=MyISAM DEFAULT CHARSET=latin1;
+) ENGINE=MyISAM  DEFAULT CHARSET=latin1 AUTO_INCREMENT=7 ;
 
 --
 -- Contenu de la table `users`
 --
 
-INSERT INTO `users` (`id`, `nom`, `prenom`, `login`, `password`, `dateNaissance`, `dateAjout`, `type`) VALUES
-(1, 'MBOU', 'Marvin', 'writer', 'mdp', 0x313939322d31312d32302030303a30303a3030, 0x323031352d30332d32372030303a30303a3030, 0),
-(2, 'admin1', 'admin1', 'admin', 'mdp', 0x313939302d31302d31302030303a30303a3030, 0x323031352d30332d32372030303a30303a3030, 1);
+INSERT INTO `users` (`id`, `nom`, `prenom`, `login`, `password`, `dateAjout`, `type`) VALUES
+(1, 'MBOU', 'Marvin', 'writer', 'mdp', 0x323031352d30332d33312031333a30353a3337, 0),
+(2, 'admin1', 'admin1', 'admin', 'mdp', 0x323031352d30332d33312031333a30353a3337, 1),
+(3, 'superadmin', 'superadmin', 'superadmin', 'mdp', 0x323031352d30332d33312031333a30373a3436, 1),
+(6, 'test', 'test', 'test', 'mdp', 0x323031352d30332d33312031353a35383a3135, 0);
 
 --
 -- Index pour les tables exportées
@@ -102,7 +106,7 @@ ALTER TABLE `comments`
 -- Index pour la table `news`
 --
 ALTER TABLE `news`
- ADD PRIMARY KEY (`id`);
+ ADD PRIMARY KEY (`id`), ADD KEY `fk_auteur` (`auteur`);
 
 --
 -- Index pour la table `users`
@@ -118,12 +122,17 @@ ALTER TABLE `users`
 -- AUTO_INCREMENT pour la table `comments`
 --
 ALTER TABLE `comments`
-MODIFY `id` mediumint(9) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=9;
+MODIFY `id` mediumint(9) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=3;
 --
 -- AUTO_INCREMENT pour la table `news`
 --
 ALTER TABLE `news`
-MODIFY `id` smallint(5) unsigned NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=6;
+MODIFY `id` smallint(5) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=7;
+--
+-- AUTO_INCREMENT pour la table `users`
+--
+ALTER TABLE `users`
+MODIFY `id` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=7;
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;

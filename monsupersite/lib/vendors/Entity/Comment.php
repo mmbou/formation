@@ -8,14 +8,16 @@ class Comment extends Entity
   protected $news,
             $auteur,
             $contenu,
-            $date;
+            $date,
+            $email;
 
   const AUTEUR_INVALIDE = 1;
   const CONTENU_INVALIDE = 2;
+  const EMAIL_INVALIDE = 3;
 
   public function isValid()
   {
-    return !( empty($this->auteur) || empty($this->contenu) );
+    return !( empty($this->auteur) || empty($this->contenu)  );
   }
 
   public function setNews($news)
@@ -48,6 +50,17 @@ class Comment extends Entity
     $this->date = $date;
   }
 
+
+    public function setEmail($email)
+  {
+    if (!is_string($email) || empty($email))
+    {
+      $this->erreurs[] = self::EMAIL_INVALIDE;
+    }
+
+    $this->email = $email;
+  }
+
   public function news()
   {
     return $this->news;
@@ -67,6 +80,12 @@ class Comment extends Entity
   {
     return $this->date;
   }
+
+  public function email()
+  {
+    return $this->email;
+  }
+
 }
 
 ?>

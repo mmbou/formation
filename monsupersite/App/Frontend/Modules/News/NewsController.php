@@ -3,11 +3,13 @@ namespace App\Frontend\Modules\News;
 
 use \OCFram\BackController;
 use \OCFram\HTTPRequest;
+use \OCFram\FormHandler;
 use \Entity\Comment;
 use \Entity\News;
 use \FormBuilder\CommentFormBuilder;
 use \FormBuilder\NewsFormBuilder;
-use \OCFram\FormHandler;
+
+
 
 class NewsController extends BackController
 {
@@ -21,7 +23,8 @@ class NewsController extends BackController
       $comment = new Comment([
         'news' => $request->getData('news'),
         'auteur' => $request->postData('auteur'),
-        'contenu' => $request->postData('contenu')
+        'contenu' => $request->postData('contenu'),
+        'email' => $request->postData('email')
       ]);
     }
     else
@@ -98,6 +101,31 @@ class NewsController extends BackController
     $this->page->addVar('title', $news->titre());
     $this->page->addVar('news', $news);
     $this->page->addVar('comments', $this->managers->getManagerOf('Comments')->getListOf($news->id()));
+  }
+
+
+  public function executeListNewsOfAuthor(HTTPRequest $request)
+  {
+   
+    $this->page->addVar('title', 'Auteur news');
+ 
+    $manager = $this->managers->getManagerOf('News');
+ 
+    $this->page->addVar('listeNews', $manager->getListNews($request->getData('id')));
+    $this->page->addVar('nombreNews', $manager->countNews($request->getData('id')));
+
+  }
+
+   public function executeGetNewsCommentedByEmail(HTTPRequest $request)
+  {
+    
+     $this->page->addVar('title', 'Comment email');
+
+     $manager = $this->managers->getManagerOf('Comments');
+
+     $this->page->addVar('comments', $manager->getCommentByEmail($request->getData('email')));
+
+
   }
 
 
