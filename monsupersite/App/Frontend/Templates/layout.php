@@ -38,6 +38,8 @@
           <li><a href="/admin/news-insert.html">Add news</a></li>
           <li><a href="/admin/logout">Logout</a></li>
           <?php } ?>
+
+          <li><a href="/device/">See device</a></li>
          
         </ul>
       </nav>

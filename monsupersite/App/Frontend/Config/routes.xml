@@ -10,4 +10,5 @@
   <route url="/author-([0-9]+)/(.+)\.html" module="News" action="listNewsOfAuthor" vars="id,slug"/>
   <route url="/commentauthor/(.+)\.html" module="News" action="getNewsCommentedByEmail" vars="email" />
   <route url="/news-mails-([0-9]+)\.html" module="News" action="sendMails" vars="news" />
+  <route url="/device/" module="Device" action="getDeviceType" />
 </routes>

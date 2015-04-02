@@ -28,28 +28,21 @@ class ConnexionController extends BackController
     // On regarde si l'utilisateur était trouvé
     if(isset($user))
     {
+      $this->app->user()->setAuthenticated(true);
 
-              $this->app->user()->setAuthenticated(true);
+      $this->app->user()->setAttribute('id',$user->id()); 
+      $this->app->user()->setAttribute('type',$user->type()); 
+      $this->app->user()->setAttribute('nom',$user->nom()); 
+      $this->app->user()->setAttribute('prenom',$user->prenom());
 
-              
-              $this->app->user()->setAttribute('id',$user->id()); 
-              $this->app->user()->setAttribute('type',$user->type()); 
-              $this->app->user()->setAttribute('nom',$user->nom()); 
-              $this->app->user()->setAttribute('prenom',$user->prenom());
+      if($user->type() == 1)    
+      {
+        //On le dirige vers la partie admin
+        $this->app->httpResponse()->redirect('/admin/');
+      }
 
-              if($user->type() == 1 )    
-              {
-                //On le dirige vers la partie admin
-
-                $this->app->httpResponse()->redirect('/admin/');
-              }
-
-               if($user->type() == 0 )
-              {
-                //On le dirige vers la partie écrivains
-
-                $this->app->httpResponse()->redirect('/');
-              }
+      //On le dirige vers la partie écrivains
+      $this->app->httpResponse()->redirect('/');
 
               
     }
