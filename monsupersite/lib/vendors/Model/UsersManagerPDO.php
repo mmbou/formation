@@ -12,7 +12,22 @@ class UsersManagerPDO extends UsersManager
     return $this->dao->query('SELECT COUNT(*) FROM users')->fetchColumn();
   }
 
+ public function getNom($id)
+ {
+    $requete = $this->dao->prepare('SELECT nom, prenom FROM users WHERE id = :id');
+    
+    $requete->bindValue(':id', (int) $id, \PDO::PARAM_INT);
+    $requete->execute();
+    $requete->setFetchMode(\PDO::FETCH_CLASS | \PDO::FETCH_PROPS_LATE, '\Entity\User');
+    
+    if ($user = $requete->fetch())
+    {
 
+      return $user;
+    }
+    
+    return null;
+ }
 
 
  public function getUniqueCurrent($login, $password)

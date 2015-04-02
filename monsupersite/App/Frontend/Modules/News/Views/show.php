@@ -1,4 +1,4 @@
-<p>Par <em><?= $news['auteur'] ?></em>, le <?= $news['dateAjout']->format('d/m/Y à H\hi') ?></p>
+<p>Par <a href="/author-<?=$news['auteur']?>/<?=$auteur['nom']?>.html"><em><?=$auteur['nom']?></em></a>, le <?= $news['dateAjout']->format('d/m/Y à H\hi') ?></p>
 <h2><?= $news['titre'] ?></h2>
 <p><?= nl2br($news['contenu']) ?></p>
 

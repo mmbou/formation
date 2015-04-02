@@ -83,14 +83,10 @@ class NewsManagerPDO extends NewsManager
   }
 
 
-  public function getListNews($id,$debut = -1, $limite = -1)
+  public function getListNews($id)
   {
-       $sql = 'SELECT id, auteur, titre, contenu, dateAjout, dateModif FROM news WHERE id = '.(int) $id;
+       $sql = 'SELECT id, auteur, titre, contenu, dateAjout, dateModif FROM news WHERE auteur = '.(int) $id;
     
-    if ($debut != -1 || $limite != -1)
-    {
-      $sql .= ' LIMIT '.(int) $limite.' OFFSET '.(int) $debut;
-    }
     
     $requete = $this->dao->query($sql);
     $requete->setFetchMode(\PDO::FETCH_CLASS | \PDO::FETCH_PROPS_LATE, '\Entity\News');

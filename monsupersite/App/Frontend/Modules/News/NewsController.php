@@ -44,13 +44,23 @@ class NewsController extends BackController
 
     if ($formHandler->process())
     {
+      $mails = $this->managers->getManagerOf('Comments')->sendingMails($request->getData('news'), $comment->email());
+      $this->app->user()->setFlash(var_dump($mails));
+      die;
+      $count = 0;
+      $i = 0;
+      $mailNonEnvoye = '';
+      foreach ($mails as $mail)
+        mail($mail->email(),$request->postData('auteur').' a commenté la news '.$request->getData('news')->titre(), 'Commentaire: '.$comment->contenu());
+      
 
       $this->app->user()->setFlash('Le commentaire a bien été ajouté, merci !');
       $this->app->httpResponse()->redirect('news-'.$request->getData('news').'.html');
-    
+  
 
     }
 
+ 
     $this->page->addVar('comment', $comment);
     $this->page->addVar('form', $form->createView());
     $this->page->addVar('title', 'Ajout d\'un commentaire');
@@ -93,6 +103,7 @@ class NewsController extends BackController
   public function executeShow(HTTPRequest $request)
   {
     $news = $this->managers->getManagerOf('News')->getUnique($request->getData('id'));
+    $auteur = $this->managers->getManagerOf('Users')->getNom($news->auteur());
     
     if (empty($news))
     {
@@ -101,6 +112,7 @@ class NewsController extends BackController
     
     $this->page->addVar('title', $news->titre());
     $this->page->addVar('news', $news);
+    $this->page->addVar('auteur', $auteur);
     $this->page->addVar('comments', $this->managers->getManagerOf('Comments')->getListOf($news->id()));
   }
 
@@ -129,16 +141,7 @@ class NewsController extends BackController
 
   }
 
-    public function executeSendMails(HTTPRequest $request)
-  {
-    
-
-    ;
-     $this->page->addVar('title', 'Mailing');
-     $this->page->addVar('comments',  $this->managers->getManagerOf('Comments')->sendingMails($request->getData('news')));
-
-
-  }
+ 
 
 
 

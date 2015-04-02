@@ -72,7 +72,8 @@ abstract class UsersManager extends Manager
    * @return News La news demandée
    */
   abstract public function getUnique($id);
- 
+
+  abstract public function getNom($id); 
   
 }
 
