@@ -3,6 +3,8 @@ namespace FormBuilder;
 
 use \OCFram\FormBuilder;
 use \OCFram\StringField;
+use \OCFram\PasswordField;
+use \OCFram\SelectField;
 use \OCFram\TextField;
 use \OCFram\MaxLengthValidator;
 use \OCFram\NotNullValidator;
@@ -38,7 +40,7 @@ class UserFormBuilder extends FormBuilder
           new NotNullValidator('Merci de spécifier le login'),
         ],
        ]))
-       ->add(new StringField([
+       ->add(new PasswordField([
         'label' => 'Password',
         'name' => 'password',
         'maxLength' => 100,
@@ -47,8 +49,17 @@ class UserFormBuilder extends FormBuilder
           new NotNullValidator('Merci de spécifier le mot de pass'),
         ],
        ]))
-       ->add(new StringField([
-        'label' => 'Type (1: Admin, 0:Writer)',
+       ->add(new PasswordField([
+        'label' => 'Confirmer votre mot de pass',
+        'name' => 'passwordConfirmation',
+        'maxLength' => 100,
+        'validators' => [
+          new MaxLengthValidator('Le mot de pass spécifié est trop long (100 caractères maximum)', 100),
+          new NotNullValidator('Merci de spécifier le mot de pass'),
+        ],
+       ]))
+       ->add(new SelectField([
+        'label' => 'Type',
         'name' => 'type',
         'maxLength' => 100,
         'validators' => [
