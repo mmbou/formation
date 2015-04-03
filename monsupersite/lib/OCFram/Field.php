@@ -8,8 +8,9 @@ abstract class Field
   protected $errorMessage;
   protected $label;
   protected $name;
-  protected $validators = [];
   protected $value;
+  protected $validators = [];
+
   
   public function __construct(array $options = [])
   {
@@ -39,25 +40,26 @@ abstract class Field
   {
     return $this->label;
   }
+
+  public function value()
+  {
+    return $this->value;
+  }
+
+   public function name()
+  {
+    return $this->name;
+  }
   
   public function length()
   {
     return $this->length;
   }
   
-  public function name()
-  {
-    return $this->name;
-  }
-  
+ 
   public function validators()
   {
     return $this->validators;
-  }
-  
-  public function value()
-  {
-    return $this->value;
   }
   
   public function setLabel($label)
@@ -67,6 +69,24 @@ abstract class Field
       $this->label = $label;
     }
   }
+
+   public function setName($name)
+  {
+    if (is_string($name))
+    {
+      $this->name = $name;
+    }
+  }
+
+
+   public function setValue($value)
+  {
+    if (is_string($value))
+    {
+      $this->value = $value;
+    }
+  }
+
   
   public function setLength($length)
   {
@@ -78,13 +98,7 @@ abstract class Field
     }
   }
   
-  public function setName($name)
-  {
-    if (is_string($name))
-    {
-      $this->name = $name;
-    }
-  }
+ 
   
   public function setValidators(array $validators)
   {
@@ -97,13 +111,7 @@ abstract class Field
     }
   }
   
-  public function setValue($value)
-  {
-    if (is_string($value))
-    {
-      $this->value = $value;
-    }
-  }
+ 
 }
 
 

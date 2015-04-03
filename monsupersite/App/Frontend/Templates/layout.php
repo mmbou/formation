@@ -26,16 +26,17 @@
           <?php } ?>
 
           <?php if ($user->isAuthenticated() AND $user->getAttribute('type') == 1) { ?> 
-          <li><a href="/admin/">Admin</a></li>
           <li><a href="/admin/news-insert.html">Add news</a></li>
+          <li><a href="/admin/">Edit news</a></li>
           <li><a href="/admin/user-insert.html">Add user</a></li>
-          <li><a href="/admin/user-index.html">See users</a></li>
+          <li><a href="/admin/user-index.html">Edit users</a></li>
           <li><a href="/admin/logout">Logout</a></li>
           <?php } ?>
 
 
            <?php if ($user->isAuthenticated() AND $user->getAttribute('type') == 0) { ?>
           <li><a href="/admin/news-insert.html">Add news</a></li>
+          <li><a href="/admin/">Edit news</a></li>
           <li><a href="/admin/logout">Logout</a></li>
           <?php } ?>
 

@@ -5,6 +5,7 @@ use \OCFram\FormBuilder;
 use \OCFram\StringField;
 use \OCFram\TextField;
 use \OCFram\CheckboxField;
+use \OCFram\EmailValidator;
 use \OCFram\MaxLengthValidator;
 use \OCFram\NotNullValidator;
 
@@ -37,10 +38,11 @@ class CommentFormBuilder extends FormBuilder
         'validators' => [
           new MaxLengthValidator('L\'email spécifié est trop long (50 caractères maximum)', 50),
           new NotNullValidator('Merci de spécifier l\'email du commentaire'),
+          new EmailValidator('L\' email n\'est pas un valide'),
         ],
        ]))
        ->add(new CheckboxField([
-        'label' => 'etre averti par mail des nouveaux commentaires',
+        'label' => 'Etre averti par mail des nouveaux commentaires sur la news',
         'name' => 'checkbox',
        ]))
        ;

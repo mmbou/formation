@@ -35,7 +35,7 @@ class CommentsManagerPDO extends CommentsManager
   
   public function get($id)
   {
-    $q = $this->dao->prepare('SELECT id, news, auteur, contenu FROM comments WHERE id = :id');
+    $q = $this->dao->prepare('SELECT id, news, auteur, contenu, email, checkbox FROM comments WHERE id = :id');
     $q->bindValue(':id', (int) $id, \PDO::PARAM_INT);
     $q->execute();
     
@@ -51,7 +51,7 @@ class CommentsManagerPDO extends CommentsManager
       throw new \InvalidArgumentException('L\'email n\'est pas une chaine de caractère');
     }
     
-    $q = $this->dao->prepare('SELECT id, news, auteur, contenu, date, email FROM comments WHERE email = :email');
+    $q = $this->dao->prepare('SELECT id, news, auteur, contenu, date, email, checkbox FROM comments WHERE email = :email');
     $q->bindValue(':email', $email, \PDO::PARAM_STR);
     $q->execute();
     

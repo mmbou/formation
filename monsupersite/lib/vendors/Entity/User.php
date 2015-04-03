@@ -9,20 +9,24 @@ class User extends Entity
             $prenom,
             $login,
             $password,
+            $passwordConfirmation,
             $dateAjout,
-            $type;
+            $type,
+            $email;
 
-const NOM_INVALIDE      = 1;
-const PRENOM_INVALIDE   = 2;
-const LOGIN_INVALIDE    = 3;
-const PASSWORD_INVALIDE = 4;
-const TYPE_INVALIDE     = 5;
+const NOM_INVALIDE                  = 1;
+const PRENOM_INVALIDE               = 2;
+const LOGIN_INVALIDE                = 3;
+const PASSWORD_INVALIDE             = 4;
+const PASSWORDCONFIRMATION_INVALIDE = 5;
+const TYPE_INVALIDE                 = 6;
+const EMAIL_INVALIDE                 = 7;
 
 
 
   public function isValid()
   {
-    return !(empty($this->nom) || empty($this->prenom) || empty($this->login) || empty($this->password));
+    return !(empty($this->nom) || empty($this->prenom) || empty($this->login) || empty($this->password) || empty($this->passwordConfirmation) || empty($this->email));
   }
 
 
@@ -70,6 +74,19 @@ const TYPE_INVALIDE     = 5;
   }
 
 
+    public function setPasswordConfirmation($passwordConfirmation)
+  {
+    if (!is_string($passwordConfirmation) || empty($passwordConfirmation))
+    {
+      $this->erreurs[] = self::PASSWORDCONFIRMATION_INVALIDE;
+    }
+
+    $this->passwordConfirmation = $passwordConfirmation;
+  }
+
+
+
+
   public function setDateAjout(\DateTime $dateAjout)
   {
     $this->dateAjout = $dateAjout;
@@ -83,6 +100,16 @@ const TYPE_INVALIDE     = 5;
     }
 
     $this->type = $type;
+  }
+
+    public function setEmail($email)
+  {
+    if (!is_string($email) || empty($email))
+    {
+      $this->erreurs[] = self::EMAIL_INVALIDE;
+    }
+
+    $this->email = $email;
   }
 
   // GETTERS //
@@ -107,6 +134,11 @@ const TYPE_INVALIDE     = 5;
     return $this->password;
   }
 
+   public function passwordConfirmation()
+  {
+    return $this->passwordConfirmation;
+  }
+
   public function dateAjout()
   {
     return $this->dateAjout;
@@ -116,6 +148,12 @@ const TYPE_INVALIDE     = 5;
   {
     return $this->type;
   }
+
+  public function email()
+  {
+    return $this->email;
+  }
+
 }
 
 

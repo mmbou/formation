@@ -180,51 +180,60 @@ class NewsController extends BackController
 
   public function processForm2(HTTPRequest $request)
   {
-    if ($request->method() == 'POST')
-    {
-      $user = new User([
-        'nom' => $request->postData('nom'),
-        'prenom' => $request->postData('prenom'),
-        'login' => $request->postData('login'), 
-        'password' => $request->postData('password'),  
-        'type' => $request->postData('type'),
+
+    
+      if ($request->method() == 'POST')
+      {
+        
+        $user = new User([
+          'nom' => $request->postData('nom'),
+          'prenom' => $request->postData('prenom'),
+          'login' => $request->postData('login'), 
+          'password' => $request->postData('password'), 
+          'passwordConfirmation' => $request->postData('passwordConfirmation'),
+          'type' => $request->postData('type'),
+          'email' => $request->postData('email'),
+             ]);
+   
+        if ($request->getExists('id'))
+        {
+          $user->setId($request->getData('id'));
+        }
+      }
+      else 
+      {
+        // L'identifiant du user est transmis si on veut le modifier
+        if ($request->getExists('id'))
+        {
+          $user = $this->managers->getManagerOf('Users')->getUnique($request->getData('id'));
+        }
+        else
+        {
+          $user = new User;
+        }
+      }
+   
+      $formBuilder = new UserFormBuilder($user);
+      $formBuilder->build();
+   
+      $form = $formBuilder->form();
+   
+      $formHandler = new FormHandler($form, $this->managers->getManagerOf('Users'), $request);
 
 
-      ]);
- 
-      if ($request->getExists('id'))
-      {
-        $user->setId($request->getData('id'));
-      }
-    }
-    else
-    {
-      // L'identifiant de la news est transmis si on veut la modifier
-      if ($request->getExists('id'))
-      {
-        $user = $this->managers->getManagerOf('Users')->getUnique($request->getData('id'));
-      }
-      else
-      {
-        $user = new User;
-      }
-    }
- 
-    $formBuilder = new UserFormBuilder($user);
-    $formBuilder->build();
- 
-    $form = $formBuilder->form();
- 
-    $formHandler = new FormHandler($form, $this->managers->getManagerOf('Users'), $request);
- 
-    if ($formHandler->process())
-    {
-      $this->app->user()->setFlash($user->isNew() ? 'Le user a bien été ajoutée !' : 'Le user a bien été modifié !');
- 
-      $this->app->httpResponse()->redirect('/admin/');
-    }
- 
-    $this->page->addVar('form', $form->createView());
+         if ($formHandler->process())
+        {
+          $this->app->user()->setFlash($user->isNew() ? 'Le user a bien été ajoutée !' : 'Le user a bien été modifié !');
+     
+          $this->app->httpResponse()->redirect('/admin/');
+        }
+
+       
+   
+      $this->page->addVar('form', $form->createView());
+    
+   
+      
   }
 
 
@@ -236,6 +245,7 @@ class NewsController extends BackController
  
     $this->page->addVar('title', 'Modification d\'une news');
   }
+    
 
 
 }
