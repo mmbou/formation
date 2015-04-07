@@ -34,7 +34,7 @@
           <?php } ?>
 
 
-           <?php if ($user->isAuthenticated() AND $user->getAttribute('type') == 0) { ?>
+           <?php if ($user->isAuthenticated() AND $user->getAttribute('type') == 2) { ?>
           <li><a href="/admin/news-insert.html">Add news</a></li>
           <li><a href="/admin/">Edit news</a></li>
           <li><a href="/admin/logout">Logout</a></li>

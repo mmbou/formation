@@ -16,7 +16,7 @@ class SelectField extends Field
     
     $widget .= '<label>'.$this->label.'</label><select name="'.$this->name.'">';
     
-    $widget .= '<option value="0">Writer</option><option value="1">Admin</option>';
+    $widget .= '<option value="2">Writer</option><option value="1">Admin</option>';
 
     $widget .= '</select>';
     return $widget;

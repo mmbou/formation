@@ -9,7 +9,7 @@ class TypeValidator extends Validator
   {
    
   $valeurInt = (int) $value;
-    if($valeurInt == 0 || $valeurInt == 1)
+    if($valeurInt == 1 || $valeurInt == 2)
     {
       return $valeurInt;
     }
