@@ -16,7 +16,11 @@ class SelectField extends Field
     
     $widget .= '<label>'.$this->label.'</label><select name="'.$this->name.'">';
     
-    $widget .= '<option value="2">Writer</option><option value="1">Admin</option>';
+    $listeType = $this->managers->getManagerOf('Types')->getType();
+    foreach ($listeType as $type) {
+    $widget .= '<option value="$type->id()">$type->descriptif()</option>'; 
+    }
+    
 
     $widget .= '</select>';
     return $widget;

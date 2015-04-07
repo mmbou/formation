@@ -6,6 +6,7 @@ use \OCFram\HTTPRequest;
 use \Entity\News;
 use \Entity\Comment;
 use \Entity\User;
+use \Entity\Type;
 use \FormBuilder\CommentFormBuilder;
 use \FormBuilder\NewsFormBuilder;
 use \FormBuilder\UserFormBuilder;
@@ -58,6 +59,7 @@ class NewsController extends BackController
 
     public function executeIndexUser(HTTPRequest $request)
   {
+
     $this->page->addVar('title', 'Gestion des users');
  
     $manager = $this->managers->getManagerOf('Users');

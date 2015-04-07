@@ -20,7 +20,7 @@ class ConnexionController extends BackController
     {
       $login = $request->postData('login');
       $password = $request->postData('password');
-      
+
     // On récupère le manager des users.
     $user = $this->managers->getManagerOf('Users')->getUniqueCurrent($login, crypt($request->postData('password'), '$2a$07$usesomesillystringfor'.$this->app->config()->get('salt').'$'));
 
@@ -69,6 +69,13 @@ public function executeLogout(HTTPRequest $request)
         $this->app->httpResponse()->redirect('.');
   
     
+  }
+
+
+  public function executeGeneratePassword(HTTPRequest $request)
+  {   
+      var_dump('Test');die;  
+      $this->page->addVar('title', 'Generation password');
   }
 
 
