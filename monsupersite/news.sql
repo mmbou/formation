@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Client :  localhost
--- Généré le :  Mar 31 Mars 2015 à 18:57
+-- Généré le :  Mar 07 Avril 2015 à 13:02
 -- Version du serveur :  5.6.20-log
 -- Version de PHP :  5.4.31
 
@@ -31,15 +31,26 @@ CREATE TABLE IF NOT EXISTS `comments` (
   `news` smallint(6) NOT NULL,
   `auteur` varchar(50) NOT NULL,
   `contenu` text NOT NULL,
-  `date` datetime NOT NULL
-) ENGINE=MyISAM  DEFAULT CHARSET=latin1 AUTO_INCREMENT=3 ;
+  `date` datetime NOT NULL,
+  `email` varchar(100) NOT NULL,
+  `checkbox` int(11) NOT NULL
+) ENGINE=MyISAM  DEFAULT CHARSET=latin1 AUTO_INCREMENT=80 ;
 
 --
 -- Contenu de la table `comments`
 --
 
-INSERT INTO `comments` (`id`, `news`, `auteur`, `contenu`, `date`) VALUES
-(1, 2, 'writer', 'the comment', 0x323031352d30332d33312031343a30373a3434);
+INSERT INTO `comments` (`id`, `news`, `auteur`, `contenu`, `date`, `email`, `checkbox`) VALUES
+(79, 13, 'gffg', 'jnomnnmvf', 0x323031352d30342d30372031313a33393a3136, 'toi@gmail.com', 1),
+(78, 13, 'hey oui', 'lfdjufidhn', 0x323031352d30342d30372031313a33383a3536, 'moi@gmail.com', 1),
+(77, 15, 'SuperAdmin', 'jiogf', 0x323031352d30342d30372031313a33383a3032, 'moi@gmail.com', 1),
+(76, 12, 'hghj', 'jfgfdj,gv', 0x323031352d30342d30372031313a33373a3234, 'gfd@gmail.com', 1),
+(75, 12, 'toiaf', 'fgkih,', 0x323031352d30342d30372031313a33363a3530, 'gfd@gmail.x', 1),
+(74, 13, 'bjivf,d', 'bon comment', 0x323031352d30342d30372031313a33363a3234, 'a@gmail.com', 1),
+(73, 13, 'bjivf,d', 'bon comment', 0x323031352d30342d30372031313a33363a3138, 'a@gmail.com', 0),
+(72, 15, 'hjyu', 'kuikiu', 0x323031352d30342d30372031313a33353a3233, 'shi@gmail.com', 0),
+(71, 15, 'moi', 'nfdjvfd', 0x323031352d30342d30372031313a33343a3534, 'toi@gmail.com', 0),
+(70, 12, 'moi', 'jfd,fd', 0x323031352d30342d30372031313a33303a3332, 'moi@gmail.com', 1);
 
 -- --------------------------------------------------------
 
@@ -54,17 +65,17 @@ CREATE TABLE IF NOT EXISTS `news` (
   `contenu` text NOT NULL,
   `dateAjout` datetime NOT NULL,
   `dateModif` datetime NOT NULL
-) ENGINE=MyISAM  DEFAULT CHARSET=latin1 AUTO_INCREMENT=7 ;
+) ENGINE=MyISAM  DEFAULT CHARSET=latin1 AUTO_INCREMENT=16 ;
 
 --
 -- Contenu de la table `news`
 --
 
 INSERT INTO `news` (`id`, `auteur`, `titre`, `contenu`, `dateAjout`, `dateModif`) VALUES
-(2, 0, 'News2', 'ghjgfhjgf', 0x323031352d30332d33312031333a30363a3539, 0x323031352d30332d33312031333a30363a3539),
-(3, 0, 'hgf', 'hhgfh', 0x323031352d30332d33312031363a31313a3530, 0x323031352d30332d33312031363a31313a3530),
-(4, 6, 'hgf', 'hgfhgfjhgj', 0x323031352d30332d33312031363a32343a3530, 0x323031352d30332d33312031363a32353a3437),
-(6, 2, 'hgfh', 'kjhkhjhgj', 0x323031352d30332d33312031363a32373a3033, 0x323031352d30332d33312031363a32373a3039);
+(15, 26, 'News4', 'jugfdpgisdg', 0x323031352d30342d30372031313a33313a3431, 0x323031352d30342d30372031313a33313a3431),
+(14, 26, 'news3 ', 'fdjgod', 0x323031352d30342d30372031313a33313a3330, 0x323031352d30342d30372031313a33313a3330),
+(13, 30, 'news2', 'gjiogmr;gfgfl;gg', 0x323031352d30342d30372031313a33313a3030, 0x323031352d30342d30372031313a34303a3235),
+(12, 30, 'News1', 'gjufdgfkdgkk', 0x323031352d30342d30372031313a33303a3133, 0x323031352d30342d30372031313a34303a3137);
 
 -- --------------------------------------------------------
 
@@ -77,20 +88,22 @@ CREATE TABLE IF NOT EXISTS `users` (
   `nom` varchar(40) NOT NULL,
   `prenom` varchar(40) NOT NULL,
   `login` varchar(20) NOT NULL,
-  `password` varchar(20) NOT NULL,
+  `password` varchar(100) NOT NULL,
   `dateAjout` datetime NOT NULL,
-  `type` int(11) NOT NULL
-) ENGINE=MyISAM  DEFAULT CHARSET=latin1 AUTO_INCREMENT=7 ;
+  `type` int(11) NOT NULL,
+  `email` varchar(100) NOT NULL
+) ENGINE=MyISAM  DEFAULT CHARSET=latin1 AUTO_INCREMENT=32 ;
 
 --
 -- Contenu de la table `users`
 --
 
-INSERT INTO `users` (`id`, `nom`, `prenom`, `login`, `password`, `dateAjout`, `type`) VALUES
-(1, 'MBOU', 'Marvin', 'writer', 'mdp', 0x323031352d30332d33312031333a30353a3337, 0),
-(2, 'admin1', 'admin1', 'admin', 'mdp', 0x323031352d30332d33312031333a30353a3337, 1),
-(3, 'superadmin', 'superadmin', 'superadmin', 'mdp', 0x323031352d30332d33312031333a30373a3436, 1),
-(6, 'test', 'test', 'test', 'mdp', 0x323031352d30332d33312031353a35383a3135, 0);
+INSERT INTO `users` (`id`, `nom`, `prenom`, `login`, `password`, `dateAjout`, `type`, `email`) VALUES
+(30, 'user', 'user', 'user', '$2a$07$usesomesillystringforu.c7hoaFA0.DjjGrn8y2SlP6t9CqTxv6', 0x323031352d30342d30372031323a31393a3032, 2, 'user@user.com'),
+(28, 'MBOU', 'Marvin', 'Marvin', '$2a$07$usesomesillystringforuEvkcHzkXe0Xcy8wkqgp3vUS5W9YWcWK', 0x323031352d30342d30372031313a34313a3233, 1, 'Marvin@gmail.com'),
+(26, 'pass', 'pass', 'pass', '$2a$07$usesomesillystringforuh2gbRHbVp1exYMHxGHmxmHwcOwCliRq', 0x323031352d30342d30372031313a32343a3433, 1, 'pass@pass.pass'),
+(29, 'writer', 'writer', 'writer', '$2a$07$usesomesillystringforuMXGI8nZpF210MJYV9PelTnO1yAfNcvW', 0x323031352d30342d30372031323a31363a3237, 2, 'writer@writer.com'),
+(31, 'blowfish', 'blowfish', 'blowfish', '$2a$07$usesomesillystringforugtFZOQ8eZvxxihC4ZJnp2Uk2a5CdkXK', 0x323031352d30342d30372031323a35343a3339, 1, 'blowfish@gmail.com');
 
 --
 -- Index pour les tables exportées
@@ -122,17 +135,17 @@ ALTER TABLE `users`
 -- AUTO_INCREMENT pour la table `comments`
 --
 ALTER TABLE `comments`
-MODIFY `id` mediumint(9) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=3;
+MODIFY `id` mediumint(9) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=80;
 --
 -- AUTO_INCREMENT pour la table `news`
 --
 ALTER TABLE `news`
-MODIFY `id` smallint(5) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=7;
+MODIFY `id` smallint(5) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=16;
 --
 -- AUTO_INCREMENT pour la table `users`
 --
 ALTER TABLE `users`
-MODIFY `id` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=7;
+MODIFY `id` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=32;
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
