@@ -5,7 +5,7 @@
   <input type="text" name="login" required/><br />
   
   <label>Mot de passe</label>
-  <input type="password" name="password" value="mdp" required/><br /><br />
+  <input type="password" name="password" required/><br /><br />
   
   <input type="submit" value="Connexion" />
 </form>

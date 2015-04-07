@@ -189,8 +189,8 @@ class NewsController extends BackController
           'nom' => $request->postData('nom'),
           'prenom' => $request->postData('prenom'),
           'login' => $request->postData('login'), 
-          'password' => $request->postData('password'), 
-          'passwordConfirmation' => $request->postData('passwordConfirmation'),
+          'password' => md5($request->postData('password') . $this->app->config()->get('salt') . $request->postData('login')), 
+          'passwordConfirmation' => md5($request->postData('passwordConfirmation') . $this->app->config()->get('salt') . $request->postData('login')),
           'type' => $request->postData('type'),
           'email' => $request->postData('email'),
              ]);

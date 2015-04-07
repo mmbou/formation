@@ -66,11 +66,8 @@ class UserFormBuilder extends FormBuilder
        ->add(new SelectField([
         'label' => 'Type',
         'name' => 'type',
-        'maxLength' => 100,
         'validators' => [
           new TypeValidator('Merci de spécifier un type correct'),
-          new MaxLengthValidator('Le type spécifié est trop long (100 caractères maximum)', 100),
-          new NotNullValidator('Merci de spécifier le type'),
           
         ],
        ]))

@@ -2,5 +2,6 @@
 <definitions>
   <define var="login" value="admin" />
   <define var="pass" value="mdp" />
+  <define var="salt" value="0*salt--A=MAR" />
 </definitions>
 
