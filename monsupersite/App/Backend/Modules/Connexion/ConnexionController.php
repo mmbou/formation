@@ -20,9 +20,9 @@ class ConnexionController extends BackController
     {
       $login = $request->postData('login');
       $password = $request->postData('password');
-
+      
     // On récupère le manager des users.
-    $user = $this->managers->getManagerOf('Users')->getUniqueCurrent($login, md5($password . $this->app->config()->get('salt') . $login));
+    $user = $this->managers->getManagerOf('Users')->getUniqueCurrent($login, crypt($request->postData('password'), '$2a$07$usesomesillystringfor'.$this->app->config()->get('salt').'$'));
 
     // On regarde si l'utilisateur était trouvé
     if(isset($user))

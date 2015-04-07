@@ -189,12 +189,13 @@ class NewsController extends BackController
           'nom' => $request->postData('nom'),
           'prenom' => $request->postData('prenom'),
           'login' => $request->postData('login'), 
-          'password' => md5($request->postData('password') . $this->app->config()->get('salt') . $request->postData('login')), 
-          'passwordConfirmation' => md5($request->postData('passwordConfirmation') . $this->app->config()->get('salt') . $request->postData('login')),
+          'password' => crypt($request->postData('password'), '$2a$07$usesomesillystringfor'.$this->app->config()->get('salt').'$'),
+          'passwordConfirmation' => crypt($request->postData('passwordConfirmation'), '$2a$07$usesomesillystringfor'.$this->app->config()->get('salt').'$'),
           'type' => $request->postData('type'),
           'email' => $request->postData('email'),
              ]);
-   
+
+
         if ($request->getExists('id'))
         {
           $user->setId($request->getData('id'));
