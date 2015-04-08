@@ -74,7 +74,7 @@ public function executeLogout(HTTPRequest $request)
 
   public function executeGeneratePassword(HTTPRequest $request)
   {   
-      var_dump('Test');die;  
+      $this->app->user()->setFlash(var_dump('Test'));die; 
       $this->page->addVar('title', 'Generation password');
   }
 

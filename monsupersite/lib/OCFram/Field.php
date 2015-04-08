@@ -10,6 +10,7 @@ abstract class Field
   protected $name;
   protected $value;
   protected $values;
+  protected $lastType;
   protected $validators = [];
 
   
@@ -62,6 +63,10 @@ abstract class Field
     return $this->length;
   }
 
+  public function lastType()
+  {
+    return $this->lastType;
+  }
  
   public function validators()
   {
@@ -96,6 +101,11 @@ abstract class Field
      public function setValues($values)
   {
       $this->values = $values;
+  }
+
+       public function setLastType($lastType)
+  {
+      $this->lastType = $lastType;
   }
 
   

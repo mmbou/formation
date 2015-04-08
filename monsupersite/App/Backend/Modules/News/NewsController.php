@@ -192,8 +192,8 @@ class NewsController extends BackController
           'nom' => $request->postData('nom'),
           'prenom' => $request->postData('prenom'),
           'login' => $request->postData('login'), 
-          'password' => crypt($request->postData('password'), '$2a$07$usesomesillystringfor'.$this->app->config()->get('salt').'$'),
-          'passwordConfirmation' => crypt($request->postData('passwordConfirmation'), '$2a$07$usesomesillystringfor'.$this->app->config()->get('salt').'$'),
+          'password' => $request->postData('password'),
+          'passwordConfirmation' => $request->postData('passwordConfirmation'),
           'type' => $request->postData('type'),
           'email' => $request->postData('email'),
              ]);
@@ -223,10 +223,12 @@ class NewsController extends BackController
       $form = $formBuilder->form();
    
       $formHandler = new FormHandler($form, $this->managers->getManagerOf('Users'), $request);
+      $user->setPassword(crypt($request->postData('password'), '$2a$07$usesomesillystringfor'.$this->app->config()->get('salt').'$'));
 
 
          if ($formHandler->process())
         {
+
           $this->app->user()->setFlash($user->isNew() ? 'Le user a bien été ajoutée !' : 'Le user a bien été modifié !');
      
           $this->app->httpResponse()->redirect('/admin/');

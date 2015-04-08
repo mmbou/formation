@@ -16,12 +16,16 @@ class SelectField extends Field
 
     $widget .= '<label>'.$this->label.'</label><select name="'.$this->name.'">';
 
-    foreach ($this->values as $value) 
+
+    foreach ($this->values as $valuesType) 
     {
-      $widget .= '<option value="'.$value->id().'">'.$value->descriptif().'</option>';
+      if($this->value == $valuesType->id())
+      $widget .= '<option value="'.$valuesType->id().'" selected>'.$valuesType->descriptif().'</option>';
+
+      else
+      $widget .= '<option value="'.$valuesType->id().'">'.$valuesType->descriptif().'</option>'; 
     }
  
-
     $widget .= '</select>';
     return $widget;
   }
