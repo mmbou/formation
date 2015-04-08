@@ -15,7 +15,8 @@ use \OCFram\TypeValidator;
 
 class UserFormBuilder extends FormBuilder
 {
-  public function build()
+
+  public function build($listeType = null)
   {
     $this->form->add(new StringField([
         'label' => 'Nom',
@@ -66,8 +67,9 @@ class UserFormBuilder extends FormBuilder
        ->add(new SelectField([
         'label' => 'Type',
         'name' => 'type',
+        'values' => $listeType,
         'validators' => [
-          new TypeValidator('Merci de spécifier un type correct'),
+          new TypeValidator('Merci de spécifier un type correct',$listeType),
           
         ],
        ]))

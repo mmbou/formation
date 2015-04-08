@@ -13,14 +13,14 @@ class SelectField extends Field
     {
       $widget .= $this->errorMessage.'<br />';
     }
-    
+
     $widget .= '<label>'.$this->label.'</label><select name="'.$this->name.'">';
-    
-    $listeType = $this->managers->getManagerOf('Types')->getType();
-    foreach ($listeType as $type) {
-    $widget .= '<option value="$type->id()">$type->descriptif()</option>'; 
+
+    foreach ($this->values as $value) 
+    {
+      $widget .= '<option value="'.$value->id().'">'.$value->descriptif().'</option>';
     }
-    
+ 
 
     $widget .= '</select>';
     return $widget;

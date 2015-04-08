@@ -3,6 +3,7 @@ namespace Model;
  
 use \OCFram\Manager;
 use \Entity\User;
+use \Entity\Type;
  
 abstract class UsersManager extends Manager
 {
@@ -74,6 +75,10 @@ abstract class UsersManager extends Manager
   abstract public function getUnique($id);
 
   abstract public function getNom($id); 
+
+
+  abstract public function getListType();
+
   
 }
 

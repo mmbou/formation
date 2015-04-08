@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Client :  localhost
--- Généré le :  Mar 07 Avril 2015 à 13:02
+-- Généré le :  Mer 08 Avril 2015 à 12:45
 -- Version du serveur :  5.6.20-log
 -- Version de PHP :  5.4.31
 
@@ -65,7 +65,7 @@ CREATE TABLE IF NOT EXISTS `news` (
   `contenu` text NOT NULL,
   `dateAjout` datetime NOT NULL,
   `dateModif` datetime NOT NULL
-) ENGINE=MyISAM  DEFAULT CHARSET=latin1 AUTO_INCREMENT=16 ;
+) ENGINE=MyISAM  DEFAULT CHARSET=latin1 AUTO_INCREMENT=17 ;
 
 --
 -- Contenu de la table `news`
@@ -75,7 +75,28 @@ INSERT INTO `news` (`id`, `auteur`, `titre`, `contenu`, `dateAjout`, `dateModif`
 (15, 26, 'News4', 'jugfdpgisdg', 0x323031352d30342d30372031313a33313a3431, 0x323031352d30342d30372031313a33313a3431),
 (14, 26, 'news3 ', 'fdjgod', 0x323031352d30342d30372031313a33313a3330, 0x323031352d30342d30372031313a33313a3330),
 (13, 30, 'news2', 'gjiogmr;gfgfl;gg', 0x323031352d30342d30372031313a33313a3030, 0x323031352d30342d30372031313a34303a3235),
-(12, 30, 'News1', 'gjufdgfkdgkk', 0x323031352d30342d30372031313a33303a3133, 0x323031352d30342d30372031313a34303a3137);
+(12, 30, 'News1', 'gjufdgfkdgkk', 0x323031352d30342d30372031313a33303a3133, 0x323031352d30342d30372031313a34303a3137),
+(16, 100, 'fdjg,fdl', ',fd,g', 0x323031352d30342d30312030303a30303a3030, 0x323031352d30342d30392030303a30303a3030);
+
+-- --------------------------------------------------------
+
+--
+-- Structure de la table `type`
+--
+
+CREATE TABLE IF NOT EXISTS `type` (
+`id` int(11) NOT NULL,
+  `descriptif` varchar(100) NOT NULL
+) ENGINE=MyISAM  DEFAULT CHARSET=latin1 AUTO_INCREMENT=4 ;
+
+--
+-- Contenu de la table `type`
+--
+
+INSERT INTO `type` (`id`, `descriptif`) VALUES
+(1, 'Admin'),
+(2, 'Writer'),
+(3, 'SuperAdmin');
 
 -- --------------------------------------------------------
 
@@ -92,7 +113,7 @@ CREATE TABLE IF NOT EXISTS `users` (
   `dateAjout` datetime NOT NULL,
   `type` int(11) NOT NULL,
   `email` varchar(100) NOT NULL
-) ENGINE=MyISAM  DEFAULT CHARSET=latin1 AUTO_INCREMENT=32 ;
+) ENGINE=MyISAM  DEFAULT CHARSET=latin1 AUTO_INCREMENT=35 ;
 
 --
 -- Contenu de la table `users`
@@ -103,7 +124,8 @@ INSERT INTO `users` (`id`, `nom`, `prenom`, `login`, `password`, `dateAjout`, `t
 (28, 'MBOU', 'Marvin', 'Marvin', '$2a$07$usesomesillystringforuEvkcHzkXe0Xcy8wkqgp3vUS5W9YWcWK', 0x323031352d30342d30372031313a34313a3233, 1, 'Marvin@gmail.com'),
 (26, 'pass', 'pass', 'pass', '$2a$07$usesomesillystringforuh2gbRHbVp1exYMHxGHmxmHwcOwCliRq', 0x323031352d30342d30372031313a32343a3433, 1, 'pass@pass.pass'),
 (29, 'writer', 'writer', 'writer', '$2a$07$usesomesillystringforuMXGI8nZpF210MJYV9PelTnO1yAfNcvW', 0x323031352d30342d30372031323a31363a3237, 2, 'writer@writer.com'),
-(31, 'blowfish', 'blowfish', 'blowfish', '$2a$07$usesomesillystringforugtFZOQ8eZvxxihC4ZJnp2Uk2a5CdkXK', 0x323031352d30342d30372031323a35343a3339, 1, 'blowfish@gmail.com');
+(31, 'blowfish', 'blowfish', 'blowfish', '$2a$07$usesomesillystringforugtFZOQ8eZvxxihC4ZJnp2Uk2a5CdkXK', 0x323031352d30342d30372031323a35343a3339, 1, 'blowfish@gmail.com'),
+(34, 'fd', 'gfdg', 'hgfj', '$2a$07$usesomesillystringforuIpWy07CS5bWJgeiJUCaziM6cj43wZIe', 0x323031352d30342d30382031323a34333a3130, 3, 'a@gmail.com');
 
 --
 -- Index pour les tables exportées
@@ -122,10 +144,16 @@ ALTER TABLE `news`
  ADD PRIMARY KEY (`id`), ADD KEY `fk_auteur` (`auteur`);
 
 --
+-- Index pour la table `type`
+--
+ALTER TABLE `type`
+ ADD PRIMARY KEY (`id`);
+
+--
 -- Index pour la table `users`
 --
 ALTER TABLE `users`
- ADD PRIMARY KEY (`id`);
+ ADD PRIMARY KEY (`id`), ADD KEY `fk_type` (`type`);
 
 --
 -- AUTO_INCREMENT pour les tables exportées
@@ -140,12 +168,17 @@ MODIFY `id` mediumint(9) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=80;
 -- AUTO_INCREMENT pour la table `news`
 --
 ALTER TABLE `news`
-MODIFY `id` smallint(5) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=16;
+MODIFY `id` smallint(5) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=17;
+--
+-- AUTO_INCREMENT pour la table `type`
+--
+ALTER TABLE `type`
+MODIFY `id` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=4;
 --
 -- AUTO_INCREMENT pour la table `users`
 --
 ALTER TABLE `users`
-MODIFY `id` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=32;
+MODIFY `id` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=35;
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;

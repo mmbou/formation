@@ -3,6 +3,7 @@ namespace App\Backend\Modules\News;
  
 use \OCFram\BackController;
 use \OCFram\HTTPRequest;
+use \OCFram\FormHandler;
 use \Entity\News;
 use \Entity\Comment;
 use \Entity\User;
@@ -10,7 +11,7 @@ use \Entity\Type;
 use \FormBuilder\CommentFormBuilder;
 use \FormBuilder\NewsFormBuilder;
 use \FormBuilder\UserFormBuilder;
-use \OCFram\FormHandler;
+
  
 class NewsController extends BackController
 {
@@ -182,8 +183,8 @@ class NewsController extends BackController
 
   public function processForm2(HTTPRequest $request)
   {
+   $liste = $this->managers->getManagerOf('Types')->getType();
 
-    
       if ($request->method() == 'POST')
       {
         
@@ -217,7 +218,7 @@ class NewsController extends BackController
       }
    
       $formBuilder = new UserFormBuilder($user);
-      $formBuilder->build();
+      $formBuilder->build($liste);
    
       $form = $formBuilder->form();
    
@@ -242,12 +243,14 @@ class NewsController extends BackController
 
   public function executeGetNewsCommentedByEmail(HTTPRequest $request)
   {
-    $manager = $this->managers->getManagerOf('Comment');
+    $manager = $this->managers->getManagerOf('Comment'); 
     
     $this->processForm($request);
  
     $this->page->addVar('title', 'Modification d\'une news');
   }
+
+
     
 
 

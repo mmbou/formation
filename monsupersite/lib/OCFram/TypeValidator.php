@@ -4,19 +4,40 @@ namespace OCFram;
 class TypeValidator extends Validator
 {
 
-
-    public function isValid($value)
+  protected $liste;
+  
+  public function __construct($errorMessage, $liste)
   {
-   
-  $valeurInt = (int) $value;
-    if($valeurInt == 1 || $valeurInt == 2)
-    {
-      return $valeurInt;
-    }
+    parent::__construct($errorMessage);
+    
+    $this->setListe($liste);
+  }
+  
+  public function isValid($value)
+  {
 
+  	foreach ($this->liste as $list)
+    {
+  		if($list->id() == $value)
+  		{
+  			return $value;
+  		}
+  	}
     return null;
   }
 
+  public function liste()
+  {   
+    return $liste;
+  
+  }
+
+  
+  public function setListe($liste)
+  {   
+    $this->liste = $liste;
+  
+  }
 }
 
 

@@ -9,6 +9,7 @@ abstract class Field
   protected $label;
   protected $name;
   protected $value;
+  protected $values;
   protected $validators = [];
 
   
@@ -46,6 +47,11 @@ abstract class Field
     return $this->value;
   }
 
+    public function values()
+  {
+    return $this->values;
+  }
+
    public function name()
   {
     return $this->name;
@@ -55,7 +61,7 @@ abstract class Field
   {
     return $this->length;
   }
-  
+
  
   public function validators()
   {
@@ -85,6 +91,11 @@ abstract class Field
     {
       $this->value = $value;
     }
+  }
+
+     public function setValues($values)
+  {
+      $this->values = $values;
   }
 
   

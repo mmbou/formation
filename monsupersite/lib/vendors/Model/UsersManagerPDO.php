@@ -2,6 +2,7 @@
 namespace Model;
 
 use \Entity\User;
+use \Entity\Type;
 
 class UsersManagerPDO extends UsersManager
 {
@@ -133,6 +134,27 @@ class UsersManagerPDO extends UsersManager
     return $listeUsers;
   }
 
+
+     public function getListType()
+  {
+    $sql = 'SELECT type.id,type.descriptif FROM type LEFT OUTER JOIN users ON type = type.id GROUP BY type.id, type.descriptif ORDER BY type.id ASC';
+    
+
+    
+    $requete = $this->dao->query($sql);
+    $requete->setFetchMode(\PDO::FETCH_CLASS | \PDO::FETCH_PROPS_LATE, '\Entity\User');
+    
+    $listeUsers = $requete->fetchAll();
+    
+    foreach ($listeUsers as $users)
+    {
+      $users->setDateAjout(new \DateTime($users->dateAjout()));
+    }
+    
+    $requete->closeCursor();
+    
+    return $listeUsers;
+  }
 
 
 
