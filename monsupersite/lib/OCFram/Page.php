@@ -32,7 +32,21 @@ class Page extends ApplicationComponent
     $content = ob_get_clean();
 
     ob_start();
-      require __DIR__.'/../../App/'.$this->app->name().'/Templates/layout.php';
+      if(!isset($this->vars['back']))
+      {
+        require __DIR__.'/../../App/'.$this->app->name().'/Templates/layout.html.php';
+      }
+      else if( $this->vars['back'] == 'html')
+      {
+        require __DIR__.'/../../App/'.$this->app->name().'/Templates/layout.html.php';
+      }
+      else if( $this->vars['back'] == 'json')
+      {
+        require __DIR__.'/../../App/'.$this->app->name().'/Templates/layout.json.php';       
+      }
+
+
+
     return ob_get_clean();
   }
 

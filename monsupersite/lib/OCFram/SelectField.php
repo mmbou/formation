@@ -14,7 +14,7 @@ class SelectField extends Field
       $widget .= $this->errorMessage.'<br />';
     }
 
-    $widget .= '<label>'.$this->label.'</label><select name="'.$this->name.'">';
+    $widget .= '<label>'.$this->label.'</label><select name="'.$this->name.'" id="'.$this->id.'">';
 
 
     foreach ($this->values as $valuesType) 

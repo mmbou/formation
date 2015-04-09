@@ -15,7 +15,7 @@ class PasswordField extends Field
     }
 
    
-        $widget .= '<label>'.$this->label.'</label><input type="password" name="'.$this->name.'"';
+        $widget .= '<label>'.$this->label.'</label><input type="password" name="'.$this->name.'" id="'.$this->id.'"';
         $widget .= ' value="'.htmlspecialchars($this->value).'"';
 
        

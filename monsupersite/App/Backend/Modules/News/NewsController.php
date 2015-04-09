@@ -73,10 +73,13 @@ class NewsController extends BackController
  
   public function executeInsert(HTTPRequest $request)
   {
+    $this->app->user()->setAttribute('back','html');
     $this->processForm($request);
  
+    $this->page->addVar('back',$this->app->user()->getAttribute('back'));
     $this->page->addVar('title', 'Ajout d\'une news');
   }
+
 
    public function executeInsertUser(HTTPRequest $request)
   {
@@ -181,14 +184,16 @@ class NewsController extends BackController
     $this->page->addVar('form', $form->createView());
   }
 
+  
+
   public function processForm2(HTTPRequest $request)
   {
    $liste = $this->managers->getManagerOf('Types')->getType();
 
       if ($request->method() == 'POST')
       {
-        
-        $user = new User([
+
+          $user = new User([
           'nom' => $request->postData('nom'),
           'prenom' => $request->postData('prenom'),
           'login' => $request->postData('login'), 
@@ -197,6 +202,7 @@ class NewsController extends BackController
           'type' => $request->postData('type'),
           'email' => $request->postData('email'),
              ]);
+
 
 
         if ($request->getExists('id'))

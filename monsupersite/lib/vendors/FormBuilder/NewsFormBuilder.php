@@ -14,6 +14,7 @@ class NewsFormBuilder extends FormBuilder
     $this->form ->add(new StringField([
                 'label' => 'Titre',
                 'name' => 'titre',
+                'id' => 'titre',
                 'maxLength' => 100,
                 'validators' => [
                   new MaxLengthValidator('Le titre spécifié est trop long (100 caractères maximum)', 100),
@@ -23,6 +24,7 @@ class NewsFormBuilder extends FormBuilder
                ->add(new TextField([
                 'label' => 'Contenu',
                 'name' => 'contenu',
+                'id' => 'contenu',
                 'rows' => 8,
                 'cols' => 60,
                 'validators' => [

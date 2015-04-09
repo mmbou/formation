@@ -34,6 +34,7 @@ class ConnexionController extends BackController
       $this->app->user()->setAttribute('nom',$user->nom()); 
       $this->app->user()->setAttribute('prenom',$user->prenom());
 
+
       if($user->type() == 1)    
       {
         //On le dirige vers la partie admin
@@ -65,6 +66,7 @@ public function executeLogout(HTTPRequest $request)
         $this->app->user()->setAttribute('type',null); 
         $this->app->user()->setAttribute('nom',null); 
         $this->app->user()->setAttribute('prenom',null);
+        $this->app->user()->setAttribute('back',null);
         $this->app->user()->setAuthenticated(false);
         $this->app->httpResponse()->redirect('.');
   

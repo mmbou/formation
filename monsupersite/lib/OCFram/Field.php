@@ -10,6 +10,7 @@ abstract class Field
   protected $name;
   protected $value;
   protected $values;
+  protected $id;
   protected $lastType;
   protected $validators = [];
 
@@ -72,6 +73,11 @@ abstract class Field
   {
     return $this->validators;
   }
+
+    public function id()
+  {
+    return $this->id;
+  }
   
   public function setLabel($label)
   {
@@ -131,6 +137,13 @@ abstract class Field
       }
     }
   }
+
+
+  public function setId($id)
+  {
+      $this->id = $id;
+  }
+
   
  
 }

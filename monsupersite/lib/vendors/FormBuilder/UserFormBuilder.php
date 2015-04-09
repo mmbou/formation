@@ -21,6 +21,7 @@ class UserFormBuilder extends FormBuilder
     $this->form->add(new StringField([
         'label' => 'Nom',
         'name' => 'nom',
+        'id' => 'nom',
         'maxLength' => 20,
         'validators' => [
           new MaxLengthValidator('Le nom spécifié est trop long (20 caractères maximum)', 20),
@@ -30,6 +31,7 @@ class UserFormBuilder extends FormBuilder
        ->add(new StringField([
         'label' => 'Prenom',
         'name' => 'prenom',
+        'id' => 'prenom',
         'maxLength' => 100,
         'validators' => [
           new MaxLengthValidator('Le prenom spécifié est trop long (100 caractères maximum)', 100),
@@ -39,6 +41,7 @@ class UserFormBuilder extends FormBuilder
        ->add(new StringField([
         'label' => 'Login',
         'name' => 'login',
+        'id' => 'login',
         'maxLength' => 100,
         'validators' => [
           new MaxLengthValidator('Le login spécifié est trop long (100 caractères maximum)', 100),
@@ -48,6 +51,7 @@ class UserFormBuilder extends FormBuilder
        ->add($PasswordField = new PasswordField([
         'label' => 'Password',
         'name' => 'password',
+        'id' => 'password',
         'maxLength' => 100,
         'validators' => [
           new MaxLengthValidator('Le mot de pass spécifié est trop long (100 caractères maximum)', 100),
@@ -57,6 +61,7 @@ class UserFormBuilder extends FormBuilder
        ->add(new PasswordField([
         'label' => 'Confirmer votre password', 
         'name' =>'passwordConfirmation', 
+        'id' => 'passwordConfirmation',
         'maxLength' => 100,
         'validators' => [
           new MaxLengthValidator('Le mot de pass spécifié est trop long (100 caractères maximum)', 100),
@@ -67,6 +72,7 @@ class UserFormBuilder extends FormBuilder
        ->add(new SelectField([
         'label' => 'Type',
         'name' => 'type',
+        'id' => 'type',
         'values' => $listeType,
         'validators' => [
           new TypeValidator('Merci de spécifier un type correct',$listeType),
@@ -76,6 +82,7 @@ class UserFormBuilder extends FormBuilder
        ->add(new StringField([
         'label' => 'Email',
         'name' => 'email',
+        'id' => 'email',
         'maxLength' => 50,
         'validators' => [
           new MaxLengthValidator('L\'email spécifié est trop long (50 caractères maximum)', 50),
