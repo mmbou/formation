@@ -14,6 +14,7 @@ class ConnexionController extends BackController
 {
   public function executeIndex(HTTPRequest $request)
   {
+    $this->app->user()->setAttribute('format','html');
     $this->page->addVar('title', 'Connexion');
     
     if ($request->postExists('login'))

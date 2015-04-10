@@ -15,18 +15,20 @@ use \FormBuilder\UserFormBuilder;
  
 class NewsAjaxController extends BackController
 {
+  
  
-    public function executeInsert(HTTPRequest $request)
+  public function executeInsertAjax(HTTPRequest $request)
   {
+    $this->app->user()->setAttribute('format','json');
+    $this->page->addVar('format', $this->app->user()->getAttribute('format'));
     $this->processForm($request);
-    $this->app->user()->setAttribute('back','json');
-    $this->app->user()->setFlash(var_dump( $this->app->user()->getAttribute('back')));
-    $this->page->addVar('back', $this->app->user()->getAttribute('back'));
- 
+
     $this->page->addVar('title', 'Ajout d\'une news');
   }
 
-    public function processForm(HTTPRequest $request)
+
+ 
+  public function processForm(HTTPRequest $request)
   {
     if ($request->method() == 'POST')
     {
@@ -36,32 +38,13 @@ class NewsAjaxController extends BackController
         'contenu' => $request->postData('contenu')
       ]);
 
-      if($news->isValid())
-      {
-                // Traitements
-        $retour = array(
-            'auteur'    => $this->app->user()->getAttribute('id'),
+
+       $retour = array(
             'titre'      => $news->titre(),
             'contenu'=> $news->contenu(),
-            'success' =>'Success'
-        );
-         
-        // Envoi du retour (on renvoi le tableau $retour encodé en JSON)
-        header('Content-type: application/json');
-        echo json_encode($retour);
-        
-      }
-      else
-      {
-                // Traitements
-        $retour = array(
+            'success' =>'Success');
+       $this->page->addVar('data',$retour);
 
-            'success' =>'Failed'
-        );
-
-        header('Content-type: application/json'); 
-        echo json_encode($retour);
-      }
  
       if ($request->getExists('id'))
       {
@@ -80,7 +63,8 @@ class NewsAjaxController extends BackController
         $news = new News;
       }
     }
- 
+
+
     $formBuilder = new NewsFormBuilder($news);
     $formBuilder->build();
  
@@ -90,14 +74,17 @@ class NewsAjaxController extends BackController
  
     if ($formHandler->process())
     {
-      $this->app->user()->setFlash($news->isNew() ? 'La news a bien été ajoutée (Ajax)!' : 'La news a bien été modifiée !');
+      $this->app->user()->setFlash($news->isNew() ? 'La news a bien été ajoutée !' : 'La news a bien été modifiée !');
  
+      $this->app->httpResponse()->redirect('/admin/');
     }
  
     $this->page->addVar('form', $form->createView());
   }
 
+  
 
+  
     
 
 

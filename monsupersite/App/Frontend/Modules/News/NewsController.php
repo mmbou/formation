@@ -69,6 +69,7 @@ class NewsController extends BackController
 
   public function executeIndex(HTTPRequest $request)
   {
+    $this->app->user()->setAttribute('format','html');
     $nombreNews = $this->app->config()->get('nombre_news');
     $nombreCaracteres = $this->app->config()->get('nombre_caracteres');
     
