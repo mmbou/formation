@@ -1,9 +1,9 @@
 <?php 
 
 	$retour = array(
-      'title' => 'Site',
-      'http-equiv' => 'Content-Type',
-      'content' => 'text/html',
+      'code' => '200',
+      'error' => 'Execution error',
+      'success' => true,
       'titre' => 'titre',
       'contenu' => 'contenu');
 

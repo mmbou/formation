@@ -40,7 +40,7 @@ abstract class Application
       }
 
       // On ajoute la route au routeur.
-      $router->addRoute(new Route($route->getAttribute('url'), $route->getAttribute('module'), $route->getAttribute('action'), $vars));
+      $router->addRoute(new Route($route->getAttribute('url'), $route->getAttribute('module'), $route->getAttribute('action'), $vars, $route->getAttribute('format')));
     }
 
     try
@@ -62,7 +62,7 @@ abstract class Application
 
     // On instancie le contrôleur.
     $controllerClass = 'App\\'.$this->name.'\\Modules\\'.$matchedRoute->module().'\\'.$matchedRoute->module().'Controller';
-    return new $controllerClass($this, $matchedRoute->module(), $matchedRoute->action());
+    return new $controllerClass($this, $matchedRoute->module(), $matchedRoute->action(), $matchedRoute->format());
   }
 
   abstract public function run();

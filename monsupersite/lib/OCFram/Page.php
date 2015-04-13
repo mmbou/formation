@@ -27,16 +27,17 @@ class Page extends ApplicationComponent
 
     extract($this->vars);
 
+    var_dump($this->vars);
+
     ob_start();
       require $this->contentFile;
     $content = ob_get_clean();
 
-    ob_start();
-
-
+    ob_start();      
+ 
      require __DIR__.'/../../App/'.$this->app->name().'/Templates/layout.html.php';             
-        
-
+             
+       
 
 
     return ob_get_clean();

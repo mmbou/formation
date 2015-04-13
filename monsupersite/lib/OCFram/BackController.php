@@ -7,18 +7,20 @@ abstract class BackController extends ApplicationComponent
   protected $module = '';
   protected $page = null;
   protected $view = '';
+  protected $format ='html';
   protected $managers = null;
 
-  public function __construct(Application $app, $module, $action)
+  public function __construct(Application $app, $module, $action, $format)
   {
     parent::__construct($app);
 
     $this->managers = new Managers('PDO', PDOFactory::getMysqlConnexion());
-    $this->page = new Page($app);
+    $this->page = new Page($app,$format);
 
     $this->setModule($module);
     $this->setAction($action);
     $this->setView($action);
+    //$this->setFormat($format);
   }
 
   public function execute()
@@ -36,6 +38,11 @@ abstract class BackController extends ApplicationComponent
   public function page()
   {
     return $this->page;
+  }
+
+   public function format()
+  {
+    return $this->format;
   }
 
   public function setModule($module)
@@ -56,6 +63,16 @@ abstract class BackController extends ApplicationComponent
     }
 
     $this->action = $action;
+  }
+
+   public function setFormat($format)
+  {
+    if (!is_string($format) || empty($format))
+    {
+      throw new \InvalidArgumentException('Le format doit être une chaine de caractères valide');
+    }
+
+    $this->format = $format;
   }
 
   public function setView($view)

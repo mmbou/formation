@@ -8,13 +8,15 @@ class Route
   protected $url;
   protected $varsNames;
   protected $vars = [];
+  protected $format;
 
-  public function __construct($url, $module, $action, array $varsNames)
+  public function __construct($url, $module, $action, array $varsNames, $format)
   {
     $this->setUrl($url);
     $this->setModule($module);
     $this->setAction($action);
     $this->setVarsNames($varsNames);
+    $this->setFormat($format);
   }
 
   public function hasVars()
@@ -68,6 +70,14 @@ class Route
     $this->vars = $vars;
   }
 
+   public function setFormat($format)
+  {
+    if (is_string($format))
+    {
+      $this->format = $format;
+    }
+  }
+
   public function action()
   {
     return $this->action;
@@ -86,6 +96,11 @@ class Route
   public function varsNames()
   {
     return $this->varsNames;
+  }
+
+   public function format()
+  {
+    return $this->format;
   }
 }
 
