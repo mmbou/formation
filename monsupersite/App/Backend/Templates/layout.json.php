@@ -1,11 +1,6 @@
 <?php 
 
-	$retour = array(
-      'title' => 'Site',
-      'http-equiv' => 'Content-Type',
-      'content' => 'text/html',
-      'titre' => 'titre',
-      'contenu' => 'contenu');
+	$retour = array('code' => $code,'data' => $data);
 
 return $retour;
 

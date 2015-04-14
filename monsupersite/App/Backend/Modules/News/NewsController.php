@@ -80,9 +80,51 @@ class NewsController extends BackController
 
   public function executeConfirmInsert(HTTPRequest $request)
   {
-    $this->processForm($request);
     
     $this->page->addVar('title', 'Ajout d\'une news');
+
+    if ($request->method() == 'POST')
+    {
+      $news = new News([
+        'auteur' => $this->app->user()->getAttribute('id'),
+        'titre' => $request->postData('titre'),
+        'contenu' => $request->postData('contenu')
+      ]);
+
+       $retour = array(
+        'auteur' => $this->app->user()->getAttribute('id'),
+        'titre' => $request->postData('titre'),
+        'contenu' => $request->postData('contenu'));
+
+        $formBuilder = new NewsFormBuilder($news);
+        $formBuilder->build();
+     
+        $form = $formBuilder->form();
+     
+        $formHandler = new FormHandler($form, $this->managers->getManagerOf('News'), $request);
+        
+        if ($formHandler->process())
+        {
+
+          $this->page->addVar('data', $retour);
+
+          $this->page->addVar('code', 200);
+
+        }
+        else
+        {
+          
+          $this->page->addVar('data', $retour);
+
+          $this->page->addVar('code', 100);
+
+        }
+    }
+
+ 
+ 
+
+
   }
 
 
@@ -156,9 +198,6 @@ class NewsController extends BackController
       ]);
 
 
-      $this->page->addVar('data', $retour);
-
-
       if ($request->getExists('id'))
       {
         $news->setId($request->getData('id'));
@@ -190,6 +229,7 @@ class NewsController extends BackController
       $this->app->user()->setFlash($news->isNew() ? 'La news a bien été ajoutée !' : 'La news a bien été modifiée !');
  
       $this->app->httpResponse()->redirect('/admin/');
+
     }
  
     $this->page->addVar('form', $form->createView());

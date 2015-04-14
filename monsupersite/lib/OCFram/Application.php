@@ -8,6 +8,7 @@ abstract class Application
   protected $name;
   protected $user;                //add
   protected $config;              //add
+  
 
   public function __construct()
   {

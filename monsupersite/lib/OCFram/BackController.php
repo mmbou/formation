@@ -7,7 +7,7 @@ abstract class BackController extends ApplicationComponent
   protected $module = '';
   protected $page = null;
   protected $view = '';
-  protected $format ='html';
+  protected $format = null;
   protected $managers = null;
 
   public function __construct(Application $app, $module, $action, $format)
@@ -20,7 +20,7 @@ abstract class BackController extends ApplicationComponent
     $this->setModule($module);
     $this->setAction($action);
     $this->setView($action);
-    //$this->setFormat($format);
+    $this->format = $format;
   }
 
   public function execute()
