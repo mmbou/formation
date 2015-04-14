@@ -33,6 +33,9 @@
                         success: function(data)
                         {
                         	$('#retour').html('');
+                        	$('#auteur').html('');
+                        	$('#contenu').html('');
+                        	$('#email').html('');
 
                              console.log(data);
                         if(data.code == 200)
@@ -66,7 +69,8 @@
                             
                             if(data.data.auteur == '')
                             {
-	                            $('#retour').append('<b>Entrer un nom pour l\' auteur </b></br>'); 
+	                            $('#auteur').html('Entrer un nom pour l\' auteur');
+
                             }
                            
 
@@ -74,7 +78,7 @@
                             if(data.data.contenu == '')
                             {
 	                            
-	                           $('#retour').append('<b>Entrer un contenu </b></br>'); 
+	                           $('#contenu').html('Entrer un contenu '); 
                             }
                             
 
@@ -82,13 +86,13 @@
                             if(data.data.email == '')
                             {
 
-	                            $('#retour').append('<b>Entrer une adresse mail </b></br>');
+	                            $('#email').html('Entrer une adresse mail ');
                             }
                            
 
                         	else if(validateEmail(data.data.email) == false)
                         	{
-	                        	$('#retour').append('<b>Entrer une adresse au format mail (ex: JeanDupont@outlook.com)</b></br>');
+	                        	$('#email').html('Entrer une adresse au format mail (ex: JeanDupont@outlook.com)');
                         	}
                             
 

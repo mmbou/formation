@@ -16,6 +16,7 @@ class CommentFormBuilder extends FormBuilder
     $this->form->add(new StringField([
         'label' => 'Auteur',
         'name' => 'auteur',
+        'id' => 'auteur',
         'maxLength' => 50,
         'validators' => [
           new MaxLengthValidator('L\'auteur spécifié est trop long (50 caractères maximum)', 50),
@@ -25,6 +26,7 @@ class CommentFormBuilder extends FormBuilder
        ->add(new TextField([
         'label' => 'Contenu',
         'name' => 'contenu',
+        'id' => 'contenu',
         'rows' => 7,
         'cols' => 50,
         'validators' => [
@@ -34,6 +36,7 @@ class CommentFormBuilder extends FormBuilder
        ->add(new StringField([
         'label' => 'Email',
         'name' => 'email',
+        'id' => 'email',
         'maxLength' => 50,
         'validators' => [
           new MaxLengthValidator('L\'email spécifié est trop long (50 caractères maximum)', 50),
@@ -44,6 +47,7 @@ class CommentFormBuilder extends FormBuilder
        ->add(new CheckboxField([
         'label' => 'Etre averti par mail des nouveaux commentaires sur la news',
         'name' => 'checkbox',
+        'id' => 'checkbox',
        ]))
        ;
   }

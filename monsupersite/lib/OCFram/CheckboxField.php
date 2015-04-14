@@ -26,7 +26,7 @@ class CheckboxField extends Field
       $widget .= ' maxlength="'.$this->maxLength.'"';
     }
     
-    return $widget .= ' />';
+    return $widget .= ' /><div id="'.$this->id.'"></div>';
   }
   
   public function setMaxLength($maxLength)

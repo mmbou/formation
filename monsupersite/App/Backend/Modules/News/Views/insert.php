@@ -33,6 +33,8 @@
                         success: function(data)
                         {
                             $('#retour').html('');
+                            $('#titre').html('');
+                            $('#contenu').html('');
 
                              console.log(data);
                         if(data.code == 200)
@@ -48,11 +50,11 @@
                             $("#retour").show();
                             
                             if(data.data.titre == '')
-                            $("#retour").append('<b>Entrer un titre </b></br>'); 
+                            $("#titre").html('Entrer un titre'); 
 
 
                             if(data.data.contenu == '')
-                            $("#retour").append('<b>Entrer un contenu </b></br>');                           
+                            $("#contenu").html('Entrer un contenu');                           
                         }
 
 
