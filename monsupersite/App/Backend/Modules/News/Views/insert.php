@@ -1,4 +1,4 @@
-<script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/1.4.4/jquery.min.js"></script>
+<script type="text/javascript" src="http://code.jquery.com/jquery-latest.min.js"></script>
 
 
 <h2>Ajouter une news </h2>
@@ -32,15 +32,16 @@
                         datatype : 'json',
                         success: function(data)
                         {
-
+                            $('#retour').html('');
 
                              console.log(data);
                         if(data.code == 200)
                         {
                             $("#retour").show();
-                            $("#retour").append('<b>Vous avez ajouté une nouvelle news :</b></br>');
-                            $("#retour").append('<b>Titre :</b></br>'+data.data.titre+'</br>');
-                            $("#retour").append('<b>Contenu :</b></br><i>'+data.data.contenu+'</i></br>');
+                            $('#retour').html('')
+                            .append('<b>Vous avez ajouté une nouvelle news :</b></br>')
+                            .append('<b>Titre :</b></br>'+data.data.titre+'</br>')
+                            .append('<b>Contenu :</b></br><i>'+data.data.contenu+'</i></br>');
                         }
                         if(data.code == 100)
                         {

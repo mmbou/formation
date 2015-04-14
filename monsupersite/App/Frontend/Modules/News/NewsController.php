@@ -14,6 +14,50 @@ use \FormBuilder\NewsFormBuilder;
 class NewsController extends BackController
 {
 
+  public function executeConfirmCommentInsert(HTTPRequest $request)
+  {
+         // Si le formulaire a été envoyé.
+    if ($request->method() == 'POST')
+    {
+      $comment = new Comment([
+        'news' => $request->getData('news'),
+        'auteur' => $request->postData('auteur'),
+        'contenu' => $request->postData('contenu'),
+        'email' => $request->postData('email'), 
+        'checkbox' => $request->postData('checkbox') 
+      ]);
+
+     $retour = array(
+        'auteur' => $request->postData('auteur'),
+        'contenu' => $request->postData('contenu'),
+        'email' => $request->postData('email'), 
+        'checkbox' => $request->postData('checkbox'));
+
+      $formBuilder = new CommentFormBuilder($comment);
+      $formBuilder->build();
+
+      $form = $formBuilder->form();
+
+      $formHandler = new FormHandler($form, $this->managers->getManagerOf('Comments'), $request);
+
+      if($formHandler->process())
+      {
+          $this->page->addVar('data', $retour);
+
+          $this->page->addVar('code', 200);
+      }
+      else
+      {
+          $this->page->addVar('data', $retour);
+
+          $this->page->addVar('code', 100);
+      }
+
+    }
+   
+
+
+  } 
 
     public function executeInsertComment(HTTPRequest $request)
   {
@@ -45,14 +89,13 @@ class NewsController extends BackController
     if ($formHandler->process())
     {
       $mails = $this->managers->getManagerOf('Comments')->sendingMails($request->getData('news'), $comment->email());
-      $this->app->user()->setFlash(var_dump($mails));
-      die;
-      $count = 0;
-      $i = 0;
-      $mailNonEnvoye = '';
+      // $this->app->user()->setFlash(var_dump($mails));
+      //die;
+
+  /*    $mailNonEnvoye = '';
       foreach ($mails as $mail)
         mail($mail->email(),$request->postData('auteur').' a commenté la news '.$request->getData('news')->titre(), 'Commentaire: '.$comment->contenu());
-      
+      */
 
       $this->app->user()->setFlash('Le commentaire a bien été ajouté, merci !');
       $this->app->httpResponse()->redirect('news-'.$request->getData('news').'.html');
@@ -60,7 +103,7 @@ class NewsController extends BackController
 
     }
 
- 
+    $this->page->addVar('news', $request->getData('news'));
     $this->page->addVar('comment', $comment);
     $this->page->addVar('form', $form->createView());
     $this->page->addVar('title', 'Ajout d\'un commentaire');
