@@ -42,9 +42,25 @@ class NewsController extends BackController
 
       if($formHandler->process())
       {
+
+        $commentScope = $this->managers->getManagerOf('Comments')->get($this->managers->getManagerOf('Comments')->getScope());
+       
+        $f = "<fieldset><legend>Post&eacute par <a href=\"/commentauthor/".$commentScope->email()."html\"><strong>".htmlspecialchars($commentScope->auteur())."</strong></a> le ".$commentScope->date(). "</legend><p>".nl2br(htmlspecialchars($commentScope->contenu()))."</p></fieldset>";
+
+        $retour = array(
+        'id' => $commentScope->id(), 
+        'news' => $commentScope->news(), 
+        'auteur' => $commentScope->auteur(),
+        'contenu' => $commentScope->contenu(),
+        'email' => $commentScope->email(), 
+        'date' => $commentScope->date(),
+        'checkbox' =>$commentScope->checkbox(),
+        'f' => $f);
+       
           $this->page->addVar('data', $retour);
 
           $this->page->addVar('code', 200);
+
       }
       else
       {
@@ -82,6 +98,14 @@ class NewsController extends BackController
 
     $form = $formBuilder->form();
 
+    
+
+    $retour = array('formulaire' => $form->createView());
+
+    $this->page->addVar('data', $retour);
+
+    $this->page->addVar('code', 200);
+/*
     $formHandler = new FormHandler($form, $this->managers->getManagerOf('Comments'), $request);
 
     
@@ -92,10 +116,10 @@ class NewsController extends BackController
       // $this->app->user()->setFlash(var_dump($mails));
       //die;
 
-  /*    $mailNonEnvoye = '';
+      $mailNonEnvoye = '';
       foreach ($mails as $mail)
         mail($mail->email(),$request->postData('auteur').' a commenté la news '.$request->getData('news')->titre(), 'Commentaire: '.$comment->contenu());
-      */
+      
 
       $this->app->user()->setFlash('Le commentaire a bien été ajouté, merci !');
       $this->app->httpResponse()->redirect('news-'.$request->getData('news').'.html');
@@ -106,7 +130,7 @@ class NewsController extends BackController
     $this->page->addVar('news', $request->getData('news'));
     $this->page->addVar('comment', $comment);
     $this->page->addVar('form', $form->createView());
-    $this->page->addVar('title', 'Ajout d\'un commentaire');
+    $this->page->addVar('title', 'Ajout d\'un commentaire');*/
   }
 
 

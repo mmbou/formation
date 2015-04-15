@@ -47,6 +47,7 @@
                         }
                         if(data.code == 100)
                         {
+
                             $("#retour").show();
                             
                             if(data.data.titre == '')
@@ -54,7 +55,16 @@
 
 
                             if(data.data.contenu == '')
-                            $("#contenu").html('Entrer un contenu');                           
+                            $("#contenu").html('Entrer un contenu'); 
+
+                           
+                            if(data.data.error == 'Error') 
+                            {
+                             $('#retour').html('')
+                            .append('<b>Vous n\'êtes pas connecté </b></br>')  ; 
+
+                            } 
+                                               
                         }
 
 

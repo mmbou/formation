@@ -79,6 +79,13 @@ abstract class CommentsManager extends Manager
    * @return Comment
    */
   abstract public function get($id);
+
+    /**
+   * Méthode permettant d'obtenir un commentaire spécifique.
+   * @param $id L'identifiant du commentaire
+   * @return Comment
+   */
+  abstract public function getScope();
 }
 
 

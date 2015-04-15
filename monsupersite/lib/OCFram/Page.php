@@ -56,7 +56,8 @@ class Page extends ApplicationComponent
 
       case 'html': return $this->getGeneratedPageHtml($user); break;
 
-      default: return $this->getGeneratedPageHtml($user); break;
+      default: $this->format = 'html';
+       return $this->getGeneratedPageHtml($user); break;
 
     }
   }

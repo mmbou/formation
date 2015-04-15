@@ -20,6 +20,10 @@ class CommentsManagerPDO extends CommentsManager
 
 
 
+
+
+
+
   protected function modify(Comment $comment)
   {
     $q = $this->dao->prepare('UPDATE comments SET auteur = :auteur, contenu = :contenu , email = :email, checkbox = :checkbox WHERE id = :id');
@@ -35,7 +39,7 @@ class CommentsManagerPDO extends CommentsManager
   
   public function get($id)
   {
-    $q = $this->dao->prepare('SELECT id, news, auteur, contenu, email, checkbox FROM comments WHERE id = :id');
+    $q = $this->dao->prepare('SELECT id, news, auteur, contenu, date, email, checkbox FROM comments WHERE id = :id');
     $q->bindValue(':id', (int) $id, \PDO::PARAM_INT);
     $q->execute();
     
@@ -65,6 +69,12 @@ class CommentsManagerPDO extends CommentsManager
     }
     
     return $comments;
+  }
+
+   public function getScope()
+  {
+   
+    return $this->dao->lastInsertId();
   }
 
 

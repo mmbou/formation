@@ -82,6 +82,19 @@ public function executeLogout(HTTPRequest $request)
   }
 
 
+    public function executeNoConnected(HTTPRequest $request)
+  {   
+      $retour = array(
+        'error' => 'Error',
+        'message' => 'Vous n\' etes pas connecté');
+
+       $this->page->addVar('data', $retour);
+
+       $this->page->addVar('code', 100);
+  }
+
+
+
 
 
 
